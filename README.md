@@ -2,7 +2,7 @@ Transfer Ownership
 ==================
 
 
-This is a Google Drive Web app hosted at the [Chrome Web Store](https://chrome.google.com/webstore/detail/transfer-ownership/ndbdlpeegehlbhgnpifancfbnnehoofa)
+This is a Google Drive Web app hosted at the [Chrome Web Store](https://chrome.google.com/webstore/detail/transfer-ownership/ndbdlpeegehlbhgnpifancfbnnehoofa). 
 This app will transfer ownership of a Google Drive folder, including ownership of all sub-folders and files.  This extends the normal Google Drive functionality because Google Drive only allows you to transfer folders or files one at a time.  Transferring ownership of a parent folder, for example, does not transfer ownership of the children files and folders.  This app fills that gap by recursively transferring ownership of all files and folders within a single parent folder.
 
 ## Usage
@@ -18,7 +18,7 @@ This app will transfer ownership of a Google Drive folder, including ownership o
 
 * This cannot be undone!  Do not transfer a folder to an email address you do not know or recognize!!!
 * This script will send the new owner an email **for each folder and each file within the main folder**.  This can result in a huge number of emails to the new owner, but unfortunately there is no way to suppress this behavior programmatically.
-* If you do transfer it to the wrong person, immediately make a copy of the folder using my Copy Folder tool (search "Copy Folder" in the Webstore)
+* If you do transfer it to the wrong person, immediately make a copy of the folder using my [Copy Folder tool](https://chrome.google.com/webstore/detail/copy-folder/kfbicpdhiofpicipfggljdhjokjblnhl).
 * Any folders or files that you do not currently own will not be transferred.
 
 ## Limitations
