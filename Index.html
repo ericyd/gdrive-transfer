@@ -1,0 +1,124 @@
+<!-- Use a templated HTML printing scriptlet to import common stylesheet. -->
+<?!= HtmlService.createHtmlOutputFromFile('Stylesheet').getContent(); ?>
+
+<html>
+  <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Lato', 'Kreon']
+      }
+    });
+  </script>
+  
+
+  </head>
+  <body>
+ 
+  
+  <div class="container" id="container">
+  
+    <h1>
+       Transfer ownership of a google drive folder, including all sub-folder and all its contents <br />
+    </h1>
+    
+    <div id="description">
+       Just input the folder sharing url and a new owner email, and it will transfer ownership of the folder, including all sub-folders and contents, to the new user.<br />
+       This app will recursively trace the folder structure, and is designed to work well for deep folder structures.<br />
+       To select the folder to transfer, find the folder in your Google Drive, then:
+       <ol>
+         <li>Right click your folder</li>
+         <li>Select ''Get link''</li>
+       </ol>
+       <br />
+    </div>
+    
+    <div id="important">
+      NOTE: In order for the ownership transfer to work, you must first:
+      <ol>
+        <li>Share the top folder with the new owner</li>
+        <li>The new owner must add the folder to their Drive</li>
+          <ol>
+            <li>Navigate to "Shared with me"</li>
+            <li>Right-click the shared folder and select "Add to My Drive"</li>
+          </ol>
+      </ol>  
+      Once both of these steps are complete, <b><i>then</i></b> use this app to transfer all the sub-folders.
+    </div>
+    
+    
+    <div id="dialog-confirm">
+      
+    </div>
+    
+    
+    
+    <div class="block result-display" id="results">
+      <div class="hidden" id="error-message">
+        Verify that you have permission to access this folder and that the specified folder ID (if any) is correct.  
+      </div>
+      
+      
+      
+      
+      
+      <div id="formDiv">
+          <form id="thisForm" name="thisForm">
+          <div class="form-title">Folder to transfer (input <b>sharing url</b>)</div>
+          <input type="textbox" id="folderId" name="folderId" class="textbox" /> <br />
+          
+          <br /><br />
+          
+          <div  class="form-title">New owner email: <br /></div>
+          <input type="textbox" id="newOwner" name="newOwner" class="textbox" /> <br /><br />
+
+          <button type="button" id="copyFolderButton" class="action">Transfer folder</button>
+          
+          </form>
+          
+      </div><!-- end #formDiv -->
+      
+      <div id="working">
+          Transferring.... <img src="http://ericyd.com/pics/loading.gif" /><br /><br />
+          
+      </div>
+      <span id="status">Status:</span>
+      <div id="notes">
+      </div><!--end #notes-->
+      
+      
+      <div id="complete">
+        Transfer of ownership complete!
+      </div>
+      
+      <div id="troubleshooting">
+        <b>New owner can't find the folder?</b> Search for the folder name in their Google Drive, and find the folder in the search results.  Right click the folder and select "Add to My Drive".  The folder should now be added to their Google Drive.<br />
+        If you're having trouble, tell them to follow the below link and add it to their drive:<br />
+      </div>
+      
+      </div> <!--end #results-->
+      
+
+      
+    </div><!--end .container-->
+    
+    <div id="gray-background">
+      <div id="promotion">
+         <b>Just need to make a copy of a folder?</b> Check out <a href="https://chrome.google.com/webstore/detail/copy-folder/kfbicpdhiofpicipfggljdhjokjblnhl">my other project</a> (only available through the Chrome browser)<br />
+         Check out this project's source code on Github (almost there!) <br />
+         Check out my website: <a href="http://ericyd.com">ericyd.com</a> <br />
+         Comments? Questions? Concerns? Email me: eric@ericyd.com. <br />
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- Store data passed to template here, so it is available to the
+     imported JavaScript. -->
+<script>
+
+</script>
+
+<!-- Use a templated HTML printing scriptlet to import JavaScript. -->
+<?!= HtmlService.createHtmlOutputFromFile('JavaScript').getContent(); ?>
