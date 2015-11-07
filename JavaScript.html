@@ -60,6 +60,10 @@ document.getElementById("copyFolderButton").onclick = function() {
   // Set the folderId element within thisForm (retrieved from doGet) to the new, sliced fId variable
   thisForm.folderId.value = fId;
   
+  $('#screen').css({"display": "block", opacity: 0.7, "width":$(document).width(),"height":$(document).height()});
+  $('body').css({"overflow":"hidden"}); //default is "visible"
+  $('#holdon').css({"display": "block"});
+  
   getValues(thisForm);
 }  
 
@@ -76,12 +80,15 @@ function getValues(thisForm) {
         
     var folderName = results[2];
 
+    $('#holdon').css({"display": "none"}); 
+
     document.getElementById("dialog-confirm").innerHTML = '<p>You are about to transfer the folder "<b>' + folderName + '</b>" to the user "<b>' + newOwner + '</b>". Are you sure you would like to proceed?</p><p><b>NOTE: This cannot be undone</b>!</p>';
     
     $( "#dialog-confirm" ).dialog({
       resizable: false,
       height:300,
       modal: true,
+      closeOnEscape: false,
       buttons: {
         "OK": function() {
           $("#description").hide("blind");
@@ -91,12 +98,17 @@ function getValues(thisForm) {
     
           document.getElementById("notes").innerHTML = document.getElementById("notes").innerHTML + '<br />Successfully got started transferring "' + folderName + '" to "' + newOwner + '".';
     
-          getFolders(startFolder, folderArray, folderName);
+          getFolders(startFolder, folderArray, folderName, newOwner);
     
           $( this ).dialog( "close" );
+          $('body').css({"overflow":"visible"}); //default is "visible"
+          $('#screen').css({"display": "none"});
         },
         Cancel: function() {
+          $('body').css({"overflow":"visible"}); //default is "visible"
+          $('#screen').css({"display": "none"});
           $( this ).dialog( "close" );
+          
         }
       }
     });
@@ -105,6 +117,11 @@ function getValues(thisForm) {
   .withFailureHandler(function(msg) {
     // Respond to failure conditions here.
     document.getElementById("working").style.display = "none";
+    $('#holdon').css({"display": "none"});
+    $('body').css({"overflow":"visible"}); //default is "visible"
+    $('#screen').css({"display": "none"});
+    $("#notes").show();
+    $("#status").show();
     document.getElementById("notes").innerHTML = document.getElementById("notes").innerHTML + '<br />' + 'Failure: ' + msg;
   })
   .getValues( thisForm );
@@ -120,7 +137,7 @@ function getValues(thisForm) {
    then loops through the array of returned folderIds and creates them
 */
 
-function getFolders(folderId, folderArray, folderName) { 
+function getFolders(folderId, folderArray, folderName, newOwner) { 
   // Add the top folder to the folderArray
   var pair = [];
   pair.push(folderId);
@@ -153,7 +170,7 @@ function getFolders(folderId, folderArray, folderName) {
       }
       
     })
-    .getFolders(folderId, folderArray);
+    .getFolders(folderId, folderArray, newOwner);
 }
 
 

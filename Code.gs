@@ -25,7 +25,7 @@ function doGet(e) {
 
 /**
  * Get contents of folder and copy to new folder
- * If sub folders exist, it will recursively copy sub-folders too
+ * If sub folders exist, it will recursively transfer sub-folders too
  */
 
 // Returns the values from the form for folderId and newOwner
@@ -39,16 +39,16 @@ function getValues(theForm) {
   results.push(newOwner);
   results.push(folderName);
   
-  // adding the editor first makes sure that 
-  // all the transferred folders are added to the right parent folder
-  folder.addEditor(newOwner);
-  
   return results;
 }
 
 // Returns complete list of folders
-function getFolders(folderId, folderArray) {
+function getFolders(folderId, folderArray, newOwner) {
+  
   var startFolder = DriveApp.getFolderById(folderId);
+  // adding the editor first makes sure that 
+  // all the transferred folders are added to the right parent folder
+  startFolder.addEditor(newOwner);
   var folders = startFolder.getFolders();
   
   while (folders.hasNext()) {
