@@ -32,10 +32,16 @@
     <div id="description">
        Just input the folder sharing url and a new owner email, and it will transfer ownership of the folder, including all sub-folders and contents, to the new user.<br />
        This app will recursively trace the folder structure, and is designed to work well for deep folder structures.<br />
-       To select the folder to transfer, find the folder in your Google Drive, then:
+       To select the folder to transfer::
        <ol>
+         <li>Find the folder in your Google Drive</li>
          <li>Right click your folder</li>
-         <li>Select ''Get link''</li>
+         <li>Select ''Get link'' and press CTRL-C to copy</li>
+       </ol>
+       OR
+       <ol>
+         <li>Open the folder in Google Drive</li>
+         <li>Copy the URL from the browser address bar</li>
        </ol>
        <br />
     </div>
@@ -71,7 +77,7 @@
       
       <div id="formDiv">
           <form id="thisForm" name="thisForm">
-          <div class="form-title">Folder to transfer (input <b>sharing url</b>)</div>
+          <div class="form-title">Folder to transfer (input <b>folder url</b>)</div>
           <input type="textbox" id="folderId" name="folderId" class="textbox" /> <br />
           
           <br /><br />
