@@ -17,3 +17,13 @@ $(document).ready(function() {
   $("#complete").hide();
 
 });
+
+$("#thisForm").submit(function( event ) {
+  // Bootstrap button action binding
+  var $btn = $("#transferFolderButton").button('loading');
+  //$btn.button('reset') // call to reset to original condition
+  $("#description").hide("blind");
+  $("#status").show("blind");
+  getValues.run();
+  event.preventDefault();
+});
