@@ -1,11 +1,6 @@
-<!-- This CSS package applies Google styling; it should always be included. -->
-<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700|Kreon:400,700' rel='stylesheet' type='text/css'>
-
-<style>
+@import "custom-variables";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
 
 body {
   margin:1em 0 0 0;
@@ -181,5 +176,3 @@ h1{
 .ui-dialog-titlebar-close {
   visibility: hidden;
 }
-
-</style>
