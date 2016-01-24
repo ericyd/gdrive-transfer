@@ -1,4 +1,9 @@
+/*
+  This function parses the submitted form values and passes them to getFolders()
+*/
+
 var $ = jQuery = require('jquery');
+require('../../node_modules/jquery-ui/effect-blind.js');
 
 // Global variables
 var counter = 0;
@@ -10,8 +15,7 @@ var folderArray = [];
    It passes that ID to the getFolders
 */
 
-document.getElementById("copyFolderButton").onclick = function() {
-      
+exports.run = function() {  
   /* First, parse the folder URL to get the folder ID */
 
   // Set a temporary variable to the value passed into the "folderId" field
@@ -38,18 +42,17 @@ document.getElementById("copyFolderButton").onclick = function() {
   // Set the folderId element within thisForm (retrieved from doGet) to the new, sliced fId variable
   thisForm.folderId.value = fId;
   
+  
+  // Set background screen for confirmation dialog
   $('#screen').css({"display": "block", opacity: 0.7, "width":$(document).width(),"height":$(document).height()});
   $('body').css({"overflow":"hidden"}); //default is "visible"
   $('#holdon').css({"display": "block"});
   
-  getValues(thisForm);
-}  
-
-
-
-function getValues(thisForm) {  
+  
+  
+  
   // Get values of folder Ids and pass them to other functions
-  google.script.run
+  return google.script.run
   .withSuccessHandler(function(results) {
     
     var startFolder = results[0];
