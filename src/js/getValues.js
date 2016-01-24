@@ -13,16 +13,12 @@ var folderArray = [];
 document.getElementById("copyFolderButton").onclick = function() {
       
   /* First, parse the folder URL to get the folder ID */
-       
-  // Regular expression - find string beginning with "id="
-  // http://www.w3schools.com/jsref/jsref_regexp_source.asp
-  var regex = /id=/; 
-       
+
   // Set a temporary variable to the value passed into the "folderId" field
   var fId = thisForm.folderId.value;
        
   // Get the index of the string at which the folderId starts
-  var idStart = fId.search(regex);
+  var idStart = fId.search("id=");
   var foldersStart = fId.search("folders");
   if (idStart > 0) {
     // Slice the string starting 3 indices after "id=", which means that it takes away "id=" and leaves the rest
