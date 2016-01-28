@@ -42,5 +42,5 @@ function transferFiles(folderArray, topFolderId) {
         }
         
       })
-      .transferFiles(folderId, newOwner)
+      .transferFiles(folderId, newOwner);
 }

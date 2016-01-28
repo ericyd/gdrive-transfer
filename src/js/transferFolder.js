@@ -9,7 +9,7 @@ function transferFolder(folderId, folderName, folderArray, topFolderId) {
         // decrements the counter so that copyFiles will fire only when all folders have been created
         counter = counter - 1;
         
-        if (counter == 0) {
+        if (counter === 0) {
           document.getElementById("notes").innerHTML = document.getElementById("notes").innerHTML + '<b>Done</b>';
           transferFiles(folderArray, topFolderId);
         }
@@ -19,7 +19,7 @@ function transferFolder(folderId, folderName, folderArray, topFolderId) {
 
       counter = counter - 1;
         
-      if (counter == 0) {
+      if (counter === 0) {
         transferFiles(folderArray, topFolderId);
       }
     })

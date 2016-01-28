@@ -11,12 +11,14 @@ var changed = require('gulp-changed');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var globby = require('globby');  
+var csslint = require('gulp-csslint');
+var htmlhint = require('gulp-htmlhint');
 
 gulp.task('default', function(){
     // Default task
 });
 
-gulp.task('build', ['js','gs', 'html','css']);
+gulp.task('build', ['jslint', 'htmlhint', 'js','gs', 'html','css']);
 
 gulp.task('watch', function(){ 
     var watcher = gulp.watch(['./src/**/*'], ['build']);
@@ -30,7 +32,7 @@ gulp.task('watch', function(){
 
 
 gulp.task('js', function() {
-    globby(['./src/js/*.js']).then(function(entries) {
+    globby('./src/js/*.js').then(function(entries) {
         var b = browserify({
             entries: entries,
             baseDir: './src/js',
@@ -40,8 +42,6 @@ gulp.task('js', function() {
     return b.bundle()
         .pipe(source('js.html'))
         .pipe(buffer())
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
         .pipe(uglify())
         .pipe(insert.wrap('<script>', '</script>'))
         .pipe(gulp.dest('dist'));
@@ -90,3 +90,20 @@ gulp.task('html', function() {
         }))
         .pipe(gulp.dest('dist'));
 });
+
+
+
+
+gulp.task('jslint', function() {
+    return gulp.src(['./src/js/*.js', './src/Code.gs'])
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+})
+
+
+
+gulp.task('htmlhint', function() {
+    return gulp.src('./src/Index.html')
+        .pipe(htmlhint())
+        .pipe(htmlhint.reporter());
+})

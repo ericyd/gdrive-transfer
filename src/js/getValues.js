@@ -106,4 +106,4 @@ exports.run = function() {
     document.getElementById("notes").innerHTML = document.getElementById("notes").innerHTML + '<br />' + 'Failure: ' + msg;
   })
   .getValues( thisForm );
-}
+};
