@@ -1,7 +1,7 @@
 var $ = jQuery = require('jquery');
 
 
-function transferFolder(folderId, folderName, folderArray, topFolderId) {
+exports.transfer = function (folderId, folderName, folderArray, topFolderId) {
   
   google.script.run
     .withSuccessHandler(function(folderName) {            
