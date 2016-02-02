@@ -1,30 +1,46 @@
+/*
+    This script transfers a single folder
+    
+    Basic process:
+    Get a folder ID and name from folderArray via shift()
+    Pass that to google.script.run.transferFolder()
+    On success, pass the same ID and Name to transferFiles()
+    When transferFiles completes, send the new array, post-shift(), back to transferFolders
+    
+*/
+
+
 var $ = jQuery = require('jquery');
 var transferFiles = require('./transferFiles');
+var getFolders = require('./getFolders');
 
-exports.transfer = function (folderId, folderName, folderArray, topFolderId) {
+exports.transfer = function (folderArray) {
+  
+  var newOwner = getFolders.getNewOwner();
+  var pair = folderArray.shift();
+  var folderId = pair[0];  
   
   
   $("#" + folderId).html("Transferring folder <i class='fa fa-spinner fa-spin'></i>").addClass("disabled");
   
+  
+  
   google.script.run
-    .withSuccessHandler(function(folderName) {            
-        
-        
-        // decrements the counter so that copyFiles will fire only when all folders have been created
-        counter = counter - 1;
-        
-        if (counter === 0) {
-          transferFiles.files(folderArray, topFolderId);
-        }
+    .withSuccessHandler(function() {            
+      
+      // If transfer was successful, transferFiles for folder
+      transferFiles.files(folderId, folderArray);
+      
     })
     .withFailureHandler(function(msg) {
-      document.getElementById("notes").innerHTML = document.getElementById("notes").innerHTML + "Failed to transfer folder.  This most likely occurred because you aren't the owner of one of the sub-folders";
-
-      counter = counter - 1;
+      
+      // If transfer failed, generate error message and still transferFiles for folder
+      var errorMsg = "<b>Error:</b> Failed to transfer folder.  This most likely occurred because you aren't the owner of one of the sub-folders.<br /><b>Error message:</b> " + msg + ".";
+      $("#errors").append("<div class='alert alert-danger' role='alert'>" + errorMsg + "</div>");
         
-      if (counter === 0) {
-        transferFiles(folderArray, topFolderId);
-      }
+      transferFiles.files(folderId, folderArray);
+      
     })
+    
     .transferFolder(folderId, newOwner);
 }
