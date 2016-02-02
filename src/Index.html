@@ -20,39 +20,27 @@
 
   </head>
   <body>
-    
-  <!--Elements for confirmation screen-->
-  	<div id="holdon">Just a moment...</div>
-  	<div id="screen"></div>
  
     <!-- Modal -->
-    <div class="modal fade" id="dialog-message" tabindex="-1" role="dialog" aria-labelledby="Copy Sharing Permissions">
+    <div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="Transfer Ownership: confirm">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           
           <!--Modal title-->
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="dialog-title">Copy Sharing Permissions</h4>
+            <h4 class="modal-title" id="dialog-title">Transfer Ownership: confirm</h4>
           </div>
           
           <!--Modal text-->
-          <div class="modal-body">
-            <p>
-              Selecting this box will create the new folder/sub-folders/documents with the same sharing permissions (e.g. "Edit", "View") as the original documents.  
-            </p>
-    
-            Notes:
-            <ul>
-              <li>Anyone that was an owner of the original document/folder will simply be given "Edit" rights.  If you need to transfer ownership of the folder, please see my <a href="https://chrome.google.com/webstore/detail/transfer-ownership/ndbdlpeegehlbhgnpifancfbnnehoofa" target="_blank">Transfer Ownership</a> tool.</li>
-              <li>This will send <b><i>several</i></b> emails to each owner, editor and viewer.  Please <b><i>do not</i></b> select this option if the emails will annoy your collaborators.</li>
-              <li>It will take slightly longer to copy the folder with this option enabled</li>
-            </ul>
+          <div id="modal-message" class="modal-body">
+            
           </div>
           
           <!--Modal buttons-->
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="confirm-button" type="button" class="btn btn-primary">Confirm</button>
           </div>
           
         </div>
@@ -69,56 +57,24 @@
       <div id="description">
         Just input the folder sharing url and a new owner email, and it will transfer ownership of the folder, including all sub-folders and contents, to the new user.<br />
         This app will recursively trace the folder structure, and is designed to work well for deep folder structures.<br />
-        To select the folder to transfer::
-        <ol>
-          <li>Find the folder in your Google Drive</li>
-          <li>Right click your folder</li>
-          <li>Select ''Get link'' and press CTRL-C to copy</li>
-        </ol>
-        OR
-        <ol>
-          <li>Open the folder in Google Drive</li>
-          <li>Copy the URL from the browser address bar</li>
-        </ol>
-        <br />
-      </div>
+        To get started, simply select your folder and enter the email address of the new owner, then select Transfer Folder!<br />
+      </div>    
       
-      <div id="important">
-        NOTE: In order for the ownership transfer to work, you must first:
-        <ol>
-          <li>Share the top folder with the new owner</li>
-          <li>The new owner must add the folder to their Drive</li>
-            <ol>
-              <li>Navigate to "Shared with me"</li>
-              <li>Right-click the shared folder and select "Add to My Drive"</li>
-            </ol>
-        </ol>  
-        Once both of these steps are complete, <b><i>then</i></b> use this app to transfer all the sub-folders.
-      </div>
     
-    
-      <div id="dialog-confirm" title="Heads up!">
-        
-      </div>
-    
-    
-    
-
-      <div class="hidden" id="error-message">
-        Verify that you have permission to access this folder and that the specified folder ID (if any) is correct.  
-      </div>
+   
       
       
       
       
-      <!--Form-->
+    <!--Form-->
     <div id="formDiv">
       <form id="thisForm" name="thisForm"  class="form-horizontal">
       
         <div class="form-group">
-          <label for="folderId" class="col-sm-3 control-label">Folder to copy<br />(input <b>folder url</b>)</label>
+          <label for="folderId" class="col-sm-3 control-label">Folder to copy</label>
           <div class="col-sm-9">
-            <input type="textbox" id="folderId" name="folderId" class="form-control" placeholder="Folder ID">
+            <button type="button" id="selectFolderButton" class="btn btn-primary" autocomplete="off">Select Folder</button>
+            <span id="folderName"></span>
           </div>
         </div>
         
@@ -164,7 +120,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="panel-title">
-            <h4 id="status-title">Copying folder structure <i class="fa fa-spinner fa-spin"></i></h4>
+            <h4 id="status-title">Transferring folders <i class="fa fa-spinner fa-spin"></i></h4>
           </div>
         </div>
         <div class="panel-body">
@@ -182,7 +138,7 @@
     
     
     
-    <div id="troubleshooting">
+    <div id="troubleshooting" class="alert alert-danger">
       <b>New owner can't find the folder?</b> Search for the folder name in their Google Drive, and find the folder in the search results.  Right click the folder and select "Add to My Drive".  The folder should now be added to their Google Drive.<br />
       If you're having trouble, tell them to follow the below link and add it to their drive:<br />
     </div>
@@ -200,16 +156,16 @@
       <div class="container-fluid">
         <div class="row">
           
-          <!--Promotion for Transfer Ownership-->
-          <div class="col-sm-offset-2 col-sm-2">
-            <b>Copy a folder</b><br /> 
-            Check out <a href="https://chrome.google.com/webstore/detail/copy-folder/kfbicpdhiofpicipfggljdhjokjblnhl" target="_blank">my other project</a>
-          </div>
-          
           <!--Github-->
-          <div class="col-sm-2">
+          <div class="col-sm-offset-2 col-sm-2">
             <b>Source code</b><br />
             <a href="https://github.com/ericyd/gdrive-transfer" target="_blank">Github</a>
+          </div>
+          
+          <!--Promotion for Transfer Ownership-->
+          <div class="col-sm-2">
+            <b>Copy a folder</b><br /> 
+            Check out <a href="https://chrome.google.com/webstore/detail/copy-folder/kfbicpdhiofpicipfggljdhjokjblnhl" target="_blank">my other project</a>
           </div>
           
           <!--ericyd.com-->
