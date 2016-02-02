@@ -7,17 +7,24 @@ function getFolders(folderId, folderArray, newOwner) {
   startFolder.addEditor(newOwner);
   var folders = startFolder.getFolders();
   
+  
+  // iterate through children
   while (folders.hasNext()) {
+    
+    // get next folder from iterator, and retrieve its path
     var nextFolder = folders.next();
     var fullPath = getFullPath("", nextFolder.getId());
     fullPath = fullPath + nextFolder.getName();
     var pair = [];
+    
+    // push the Id, then the path, then push the pair to folderArray
     pair.push(nextFolder.getId());
     pair.push(fullPath);
     folderArray.push(pair);
     
+    // if child has children, recurse
     if (nextFolder.getFolders().hasNext() ) {
-      getFolders(nextFolder.getId(), folderArray);
+      getFolders(nextFolder.getId(), folderArray, newOwner);
     }
   }
   
