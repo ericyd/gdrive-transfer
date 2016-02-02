@@ -7,9 +7,6 @@ var picker = require('./picker');
 var picker = require('./getFolders');
 require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/modal.js');
 
-// Global variables
-var counter = 0;
-   
 /*
    This function gets the folderId from the sharing URL given from Google Drive
    It passes that ID to the getFolders
@@ -20,7 +17,7 @@ exports.get = function() {
   // todo: create validator
   
   // open confirmation modal
-  $("#modal-message").html('<p>You are about to transfer the folder "<b>' + folderName + '</b>" to the user "<b>' + newOwner + '</b>". Are you sure you would like to proceed?</p><p><b>NOTE: This cannot be undone</b>!</p>');
+  $("#newOwnerEmail").text(newOwner);
   $('#modal-confirm').modal({
     keyboard: false,
     show: true
