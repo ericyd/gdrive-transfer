@@ -1,7 +1,6 @@
 // Transfers folder with folderId (string) to newOwner (string)
 function transferFolder(folderId, newOwner) {
   var folder = DriveApp.getFolderById(folderId);
-  var folderName = folder.getName();
   var activeUser = Session.getActiveUser().getEmail();
   
   // Only attempt to transfer if you own the file
@@ -9,14 +8,13 @@ function transferFolder(folderId, newOwner) {
     folder.setOwner(newOwner);
   }
   
-  return folderName;
+  return;
 }
 
 
 // Transfers files from folderId (string) to newOwner (string)
 function transferFiles(folderId, newOwner) {
   var folder = DriveApp.getFolderById(folderId);
-  var folderName = folder.getName();
   var files = folder.getFiles();
   var activeUser = Session.getActiveUser().getEmail();
   
@@ -29,5 +27,5 @@ function transferFiles(folderId, newOwner) {
     }
   } 
   
-  return folderName;
+  return;
 }
