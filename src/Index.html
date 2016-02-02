@@ -34,7 +34,17 @@
           
           <!--Modal text-->
           <div id="modal-message" class="modal-body">
+            <p>
+              You are about to transfer the folder 
+              "<b><span class="folderName"></span></b>" 
+              to the user 
+              "<b><span id="newOwnerEmail"></span></b>". 
+              Are you sure you would like to proceed?
+            </p>
             
+            <p>
+              <b>NOTE: This cannot be undone!</b>
+            </p>
           </div>
           
           <!--Modal buttons-->
@@ -74,7 +84,7 @@
           <label for="folderId" class="col-sm-3 control-label">Folder to copy</label>
           <div class="col-sm-9">
             <button type="button" id="selectFolderButton" class="btn btn-primary" autocomplete="off">Select Folder</button>
-            <span id="folderName"></span>
+            <span class="folderName"></span>
           </div>
         </div>
         
