@@ -52,10 +52,9 @@ gulp.task('js', function() {
 
 gulp.task('gs', function() {
     // jshint and minify Code.gs
-    return gulp.src('./src/Code.gs')
+    return gulp.src('./src/gs/*.js')
         .pipe(changed('dist'))
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
+        .pipe(concat('Code.gs'))
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
     
@@ -95,7 +94,7 @@ gulp.task('html', function() {
 
 
 gulp.task('jslint', function() {
-    return gulp.src(['./src/js/*.js', './src/Code.gs'])
+    return gulp.src(['./src/js/*.js', './src/gs/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 })
