@@ -1,23 +1,3 @@
-
-/**
- * Get contents of folder and copy to new folder
- * If sub folders exist, it will recursively transfer sub-folders too
- */
-
-// Returns the values from the form for folderId and newOwner
-function getValues(theForm) {
-  var folderId = theForm.folderId;
-  var folder = DriveApp.getFolderById(folderId);
-  var folderName = folder.getName();
-  var newOwner = theForm.newOwner;
-  var results = [];
-  results.push(folderId);
-  results.push(newOwner);
-  results.push(folderName);
-  
-  return results;
-}
-
 // Returns complete list of folders
 function getFolders(folderId, folderArray, newOwner) {
   
