@@ -7,12 +7,9 @@ This app will transfer ownership of a Google Drive folder, including ownership o
 
 ## Usage
 
-1. Open Google Drive
-2. Right-click on the folder you wish to copy
-3. Select "Get Link"
-4. Press "CTRL-C" to copy the link
-5. In the app press "CTRL-V" to paste the folder URL
-6. Enter the new owner's email address, and keep the window open until transfer is complete
+1. Select your folder with the Google Picker
+2. Enter the new owner's email address
+3. Click "Transfer Folder" and wait for the script to complete!
 
 ## Notes
 
