@@ -50,7 +50,7 @@
           <!--Modal buttons-->
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id="confirm-button" type="button" class="btn btn-primary">Confirm</button>
+            <button id="confirm-button" type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
           </div>
           
         </div>
@@ -65,9 +65,9 @@
       </h1>
       
       <div id="description">
-        Just input the folder sharing url and a new owner email, and it will transfer ownership of the folder, including all sub-folders and contents, to the new user.<br />
-        This app will recursively trace the folder structure, and is designed to work well for deep folder structures.<br />
-        To get started, simply select your folder and enter the email address of the new owner, then select Transfer Folder!<br />
+        Just input the folder sharing url and a new owner email, and it will transfer ownership of the folder, including all sub-folders and contents, to the new user.<br /><br />
+        This app will recursively trace the folder structure, and is designed to work well for deep folder structures.<br /><br />
+        To get started, simply select your folder and enter the email address of the new owner, then select Transfer Folder!<br /><br />
       </div>    
       
     
@@ -120,7 +120,10 @@
       </div>
     </div>
     
-    
+    <div id="troubleshooting" class="alert alert-warning">
+      <b>New owner can't find the folder?</b> Search for the folder name in their Google Drive, and find the folder in the search results.  Right click the folder and select "Add to My Drive".  The folder should now be added to their Google Drive.<br />
+      If you're having trouble, tell them to follow the below link and add it to their drive:<br />
+    </div>
     
     
     
@@ -144,14 +147,7 @@
       </div>
     </div>
     
-    
-    
-    
-    
-    <div id="troubleshooting" class="alert alert-danger">
-      <b>New owner can't find the folder?</b> Search for the folder name in their Google Drive, and find the folder in the search results.  Right click the folder and select "Add to My Drive".  The folder should now be added to their Google Drive.<br />
-      If you're having trouble, tell them to follow the below link and add it to their drive:<br />
-    </div>
+
       
       
 
