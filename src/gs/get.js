@@ -30,3 +30,11 @@ function getFolders(folderId, folderArray, newOwner) {
   
   return folderArray;
 }
+
+
+
+
+// Returns token for use with Google Picker
+function getOAuthToken() {
+    return ScriptApp.getOAuthToken();
+}
