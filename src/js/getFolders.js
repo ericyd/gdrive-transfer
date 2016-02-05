@@ -8,15 +8,10 @@ var transferFolder = require('./transferFolder');
     the folder structure is not affected in this process, so no need to preserve hierarchy of folders while calling the function
 */
 
-var newOwner;
-
-exports.getNewOwner = function() {
-  return newOwner;
-}
 
 exports.run = function(selectedFolder) { 
   var folderArray = [];
-  newOwner = theForm.newOwner.value;
+  var newOwner = $("#newOwner").val();
   
   var folderId = selectedFolder.id;
       
@@ -39,16 +34,15 @@ exports.run = function(selectedFolder) {
       var topFolderId = folderArray[0][0];
       $("#troubleshooting").append("<a href='https://drive.google.com/open?id=" + topFolderId + "' target='_blank'>https://drive.google.com/open?id=" + topFolderId + "</a>")
       
-      
-      
-      
+
       // Update status for user
       $("#status-title").html("Transferring folders <i class='fa fa-spinner fa-spin'></i>");
       
       // build status-table rows
-      var statusTable = "";
+      var statusTable;
       for (i = 0; i < folderArray.length; i++) {
 
+        statusTable = "";
         statusTable += "<tr>";
         // path
         statusTable += "<td>" + folderArray[i][1] + "</td>";

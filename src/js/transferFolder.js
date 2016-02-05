@@ -12,11 +12,10 @@
 
 var $ = jQuery = require('jquery');
 var transferFiles = require('./transferFiles');
-var getFolders = require('./getFolders');
 
 exports.transfer = function (folderArray) {
   
-  var newOwner = getFolders.getNewOwner();
+  var newOwner = $("#newOwner").val();
   var pair = folderArray.shift();
   var folderId = pair[0];  
   
