@@ -12,13 +12,11 @@ $(document).ready(function() {
   $("#status").hide();
   $("#troubleshooting").hide();
   $("#complete").hide();
+  $("#please-review").hide();
+  $("#newOwner").prop('disabled', false);
 });
 
 $("#thisForm").submit(function( event ) {
-  // Bootstrap button action binding
-  var $btn = $("#transferFolderButton").button('loading');
-  $("#description").hide("blind");
-  $("#status").show("blind");
   getValues.get();
   event.preventDefault();
 });

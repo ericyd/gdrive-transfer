@@ -94,12 +94,10 @@ function pickerCallback(data) {
         selectedFolder.id = doc[google.picker.Document.ID];
         selectedFolder.parentId = doc[google.picker.Document.PARENT_ID];
         selectedFolder.name = doc[google.picker.Document.NAME];
-        selectedFolder.newName = "Copy of " + selectedFolder.name;
-        $("#newFolder").val(selectedFolder.newName);
         $(".folderName").text(selectedFolder.name);
         
     } else if (action == google.picker.Action.CANCEL) {
-        google.script.host.close();
+        // google.script.host.close();
     }
 }
 
