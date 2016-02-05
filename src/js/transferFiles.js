@@ -6,18 +6,14 @@
 
 var $ = jQuery = require('jquery');
 require('../../node_modules/jquery-ui/effect-blind.js');
-var getFolders = require('./getFolders');
+require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/alert.js');
 var transferFolder = require('./transferFolder');
 
 exports.files = function(folderId, folderArray) {
     
-    var newOwner = getFolder.getNewOwner();
-    
-    
+    var newOwner = $("#newOwner").val();
     
     $("#" + folderId).html("Transferring files <i class='fa fa-spinner fa-spin'></i>").addClass("disabled");
-    
-    
     
     google.script.run
       .withSuccessHandler(function() {
@@ -31,22 +27,36 @@ exports.files = function(folderId, folderArray) {
         } else {
           // Done!
           $("#troubleshooting").show('blind');
+          $("#please-review").show('blind');
+          $("#complete").show('blind');
+          $("#status-title").html("Transfer of ownership complete");
           
         }
+        
       })
       
       .withFailureHandler(function(msg) {
-        // Generate error message
-        var errorMsg = "<b>Error:</b> Failed to transfer files in one folder. The may be because you don't own all files, or because the folder contains a synced file (e.g. PDF, image, HTML file, etc.).<br /><b>Error message:</b> " + msg + ".";
-        $("#errors").append("<div class='alert alert-danger' role='alert'>" + errorMsg + "</div>");
+          
+        $("#" + folderId).html("Complete").addClass("bg-success");
+        
+        if ($("#errors").text() == "") {
+            // Generate error message
+            var errorMsg = "<b>Error:</b> Failed to transfer one or more files. The may be because you don't own all files, or because the folder contains a synced file (e.g. PDF, image, HTML file, etc.).<br /><b>Error message:</b> " + msg + ".";
+            $("#errors").append("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + errorMsg + "</div>");
+        }
         
         if (folderArray.length > 0) {
           // Call with new folderArray
           transferFolder.transfer(folderArray);
           
+         
+         
         } else {
           // Done!
           $("#troubleshooting").show('blind');
+          $("#please-review").show('blind');
+          $("#complete").show('blind');
+          $("#status-title").html("Transfer of ownership complete");
           
         }
         
