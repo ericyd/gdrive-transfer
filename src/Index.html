@@ -76,76 +76,76 @@
       
       
       
-    <!--Form-->
-    <div id="formDiv">
-      <form id="thisForm" name="thisForm"  class="form-horizontal">
-      
-        <div class="form-group">
-          <label for="folderId" class="col-sm-3 control-label">Folder to copy</label>
-          <div class="col-sm-9">
-            <button type="button" id="selectFolderButton" class="btn btn-primary" autocomplete="off">Select Folder</button>
-            <span class="folderName"></span>
-          </div>
-        </div>
+      <!--Form-->
+      <div id="formDiv">
+        <form id="thisForm" name="thisForm"  class="form-horizontal">
         
-        <div class="form-group">
-          <label for="newOwner" class="col-sm-3 control-label">New owner email</label>
-          <div class="col-sm-9">
-            <input type="textbox" id="newOwner" name="newOwner" class="form-control" placeholder="New owner email">
+          <div class="form-group">
+            <label for="folderId" class="col-sm-3 control-label">Folder to copy</label>
+            <div class="col-sm-9">
+              <button type="button" id="selectFolderButton" class="btn btn-primary" autocomplete="off">Select Folder</button>
+              <span class="folderName"></span>
+            </div>
           </div>
-        </div>
-                
-        <div class="form-group">
-          <div class="col-sm-offset-3 col-sm-9">
-            <button type="submit" id="transferFolderButton" data-loading-text="Transferring..." class="btn btn-primary" autocomplete="off">Transfer folder</button>
+          
+          <div class="form-group">
+            <label for="newOwner" class="col-sm-3 control-label">New owner email</label>
+            <div class="col-sm-9">
+              <input type="textbox" id="newOwner" name="newOwner" class="form-control" placeholder="New owner email">
+            </div>
           </div>
-        </div>
-
-      </form>
-
-    </div>
-    
-    
-    
-    
-    <!--These divs display when complete-->
-    <div id="complete" class='alert alert-success' role='alert'>
-        Transfer of ownership complete!
-    </div>
-    
-    <div id="please-review" class="panel panel-default">
-      <div class="panel-heading">Have an extra 30 seconds?</div>
-      <div class="panel-body">
-        Please take a moment to <a href="https://chrome.google.com/webstore/detail/copy-folder/kfbicpdhiofpicipfggljdhjokjblnhl/reviews" target="_blank">rate and review this app</a> in the Chrome Web Store.
+                  
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <button type="submit" id="transferFolderButton" data-loading-text="Transferring..." class="btn btn-primary" autocomplete="off">Transfer folder</button>
+            </div>
+          </div>
+  
+        </form>
+  
       </div>
-    </div>
-    
-    <div id="troubleshooting" class="alert alert-warning">
-      <b>New owner can't find the folder?</b> Search for the folder name in their Google Drive, and find the folder in the search results.  Right click the folder and select "Add to My Drive".  The folder should now be added to their Google Drive.<br />
-      If you're having trouble, tell them to follow the below link and add it to their drive:<br />
-    </div>
-    
-    
-    
-    <!--These divs get filled programatically at runtime-->
-    <div id="errors"></div>
-    <div id="status">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <div class="panel-title">
-            <h4 id="status-title">Identifying folders <i class="fa fa-spinner fa-spin"></i></h4>
-          </div>
-        </div>
+      
+      
+      
+      
+      <!--These divs display when complete-->
+      <div id="complete" class='alert alert-success' role='alert'>
+          Transfer of ownership complete!
+      </div>
+      
+      <div id="please-review" class="panel panel-default">
+        <div class="panel-heading">Have an extra 30 seconds?</div>
         <div class="panel-body">
-          <table id="status-table" class='table table-striped'>
-            <tr>
-              <th>Folder path</th>
-              <th>Status</th>
-            </tr>
-          </table>
+          Please take a moment to <a href="https://chrome.google.com/webstore/detail/copy-folder/kfbicpdhiofpicipfggljdhjokjblnhl/reviews" target="_blank">rate and review this app</a> in the Chrome Web Store.
         </div>
       </div>
-    </div>
+      
+      <div id="troubleshooting" class="alert alert-warning">
+        <b>New owner can't find the folder?</b> Search for the folder name in their Google Drive, and find the folder in the search results.  Right click the folder and select "Add to My Drive".  The folder should now be added to their Google Drive.<br />
+        If you're having trouble, tell them to follow the below link and add it to their drive:<br />
+      </div>
+      
+      
+      
+      <!--These divs get filled programatically at runtime-->
+      <div id="errors"></div>
+      <div id="status">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h4 id="status-title">Identifying folders <i class="fa fa-spinner fa-spin"> (this can sometimes take 30 minutes or more depending on the folder size)</i></h4>
+            </div>
+          </div>
+          <div class="panel-body">
+            <table id="status-table" class='table table-striped'>
+              <tr>
+                <th>Folder path</th>
+                <th>Status</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
     
 
       
