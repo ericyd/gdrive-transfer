@@ -4,11 +4,25 @@ var transferFolder = require('./transferFolder');
     This function retrieves the folders as an array and 
     passes them to transferFolder individually
    
-    Note: order doesn't matter, as long as the top folder is transferred first
-    the folder structure is not affected in this process, so no need to preserve hierarchy of folders while calling the function
+    
 */
 
 exports.run = collectInfo();
+
+/**
+ * Extracts information for script execution
+ * and passes necessary information to getFolders.
+ * Note: The folder hierarchy is not preserved, however
+ * it doesn't affect the script as long as the top folder 
+ * is transferred first.  
+ * The folder structure is not altered in this process, 
+ * so there is no need to preserve hierarchy of 
+ * folders while calling the function
+ * 
+ * 
+ * @param {Object} selectedFolder contains properties id, name, parentName
+ * 
+ * */
 
 function collectInfo(selectedFolder) {
   
@@ -26,17 +40,28 @@ function collectInfo(selectedFolder) {
   
 }
 
+
+/**
+ * Sends information to google.script.run.getFolders.
+ * If continuation tokens are sent back, it recurses.
+ * If not, it sends completed folderArray to transferFolders
+ * 
+ * 
+ * @param {string} folderId identifier for top folder
+ * @param {array} folderArray array whose elements are also arrays, 
+ *    each one containing two elements: {string} a folder ID and {string} the folder path name
+ * @param {string} newOwner email address of new owner
+ * @param {array} continuationTokens strings of continuation tokens for folder iterators
+ * 
+ * */
+
 function getFolders(folderId, folderArray, newOwner, continuationTokens) { 
   google.script.run
     
     .withSuccessHandler(function(results) {
       
-      // folderArray is an array of arrays
-      // each element of folderArray has 2 elements
-      // the first element is the folder ID
-      // the second element is a string representing the folder path
-      var folderArray = results[0];
-      var continuationTokens = results[1];
+      folderArray = results[0];
+      continuationTokens = results[1];
       
       // if any continuation tokens exist, recurse
       if ( continuationTokens.length !== 0 ) {
