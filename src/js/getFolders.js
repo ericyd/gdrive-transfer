@@ -8,63 +8,82 @@ var transferFolder = require('./transferFolder');
     the folder structure is not affected in this process, so no need to preserve hierarchy of folders while calling the function
 */
 
+exports.run = collectInfo();
 
-exports.run = function(selectedFolder) { 
+function collectInfo(selectedFolder) {
+  
   var folderArray = [];
   var newOwner = $("#newOwner").val();
-  
   var folderId = selectedFolder.id;
-      
-  var folderName = selectedFolder.name;
   
   
   // Add the top folder to the folderArray
-  var pair = [];
-  pair.push(folderId);
-  pair.push(folderName);
-  
+  var pair = [folderId, selectedFolder.name];
   folderArray.push(pair);
+  
+  
+  return getFolders(folderId, folderArray, newOwner, []);
+  
+}
 
+function getFolders(folderId, folderArray, newOwner, continuationTokens) { 
   google.script.run
-    // folderArray is an array of arrays
-    // each element of folderArray has 2 elements
-    // the first element is the folder ID
-    // the second element is a string representing the folder path
-    .withSuccessHandler(function(folderArray) {
-      var topFolderId = folderArray[0][0];
-      $("#troubleshooting").append("<a href='https://drive.google.com/open?id=" + topFolderId + "' target='_blank'>https://drive.google.com/open?id=" + topFolderId + "</a>")
+    
+    .withSuccessHandler(function(results) {
       
-
-      // Update status for user
-      $("#status-title").html("Transferring folders <i class='fa fa-spinner fa-spin'></i>");
+      // folderArray is an array of arrays
+      // each element of folderArray has 2 elements
+      // the first element is the folder ID
+      // the second element is a string representing the folder path
+      var folderArray = results[0];
+      var continuationTokens = results[1];
       
-      // build status-table rows
-      var statusTable;
-      for (i = 0; i < folderArray.length; i++) {
-
-        statusTable = "";
-        statusTable += "<tr>";
-        // path
-        statusTable += "<td>" + folderArray[i][1] + "</td>";
-        // id
-        statusTable += "<td id='" + folderArray[i][0] + "'><i>Waiting...</i></td>";
-        statusTable += "</tr>";
-
-        $(statusTable).hide().appendTo("#status-table").show('blind');
-
+      // if any continuation tokens exist, recurse
+      if ( continuationTokens.length !== 0 ) {
+        
+        getFolders(folderId, folderArray, newOwner, continuationTokens);
+      
+      // process data and pass to transferFolder  
+      } else {
+        
+        var topFolderId = folderArray[0][0];
+        $("#troubleshooting").append("<a href='https://drive.google.com/open?id=" + topFolderId + "' target='_blank'>https://drive.google.com/open?id=" + topFolderId + "</a>")
+        
+  
+        // Update status for user
+        $("#status-title").html("Transferring folders <i class='fa fa-spinner fa-spin'></i>");
+        
+        
+        // build status-table rows
+        var statusTable;
+        
+        for (i = 0; i < folderArray.length; i++) {
+  
+          statusTable = "";
+          statusTable += "<tr>";
+          statusTable += "<td>" + folderArray[i][1] + "</td>"; // path
+          statusTable += "<td id='" + folderArray[i][0] + "'><i>Waiting...</i></td>"; // id
+          statusTable += "</tr>";
+  
+          $(statusTable).hide().appendTo("#status-table").show('blind');
+  
+        }
+        
+        transferFolder.transfer(folderArray);
+        
+        return;
+        
       }
-      
-      transferFolder.transfer(folderArray);
       
       
     })
     .withFailureHandler(function(msg) {
-      var errormsg = "<div class='alert alert-danger' role='alert'><b>Error:</b> There was an error creating folder structure.<br />";
+      var errormsg = "<div class='alert alert-danger' role='alert'><b>Error:</b> There was an error retrieving folder structure.<br />";
       errormsg += "<b>Error message:</b> " + msg + ".<br>";
-      errormsg += "Please try again. Make sure you have correct permissions to copy this folder, and please input the entire sharing URL, not just the folder ID</div>";
+      errormsg += "Please try again. Make sure you have correct permissions to transfer this folder, and that you are using Google Chrome or Chromium</div>";
       $("#errors").append(errormsg);
       $("#status-title").html("Error");
       
     })
-    .getFolders(folderId, folderArray, newOwner);
+    .getFolders(folderId, folderArray, newOwner, []);
 }
