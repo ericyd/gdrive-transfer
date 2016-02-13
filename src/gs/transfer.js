@@ -1,4 +1,9 @@
-// Transfers folder with folderId (string) to newOwner (string)
+/**
+ * Transfers single folder to new owner
+ *
+ * @param {string} folderId identifier of folder to transfer
+ * @param {string} newOwner email address of new owner
+ */
 function transferFolder(folderId, newOwner) {
   var folder = DriveApp.getFolderById(folderId);
   var activeUser = Session.getActiveUser().getEmail();
@@ -11,8 +16,12 @@ function transferFolder(folderId, newOwner) {
   return;
 }
 
-
-// Transfers files from folderId (string) to newOwner (string)
+/**
+ * Transfers all files within a folder to new owner
+ *
+ * @param {string} folderId identifier of folder with files to transfer
+ * @param {string} newOwner email address of new owner
+ */
 function transferFiles(folderId, newOwner) {
   var folder = DriveApp.getFolderById(folderId);
   var files = folder.getFiles();

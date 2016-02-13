@@ -1,7 +1,3 @@
-/***********************************************
-doGet function required by Google Script Web App
-***********************************************/
-
 /**
  * Serves HTML of the application for HTTP GET requests.
  * If folderId is provided as a URL parameter, the web app will list
@@ -23,7 +19,16 @@ function doGet(e) {
 }
 
 
-// fullPath is a string that begins empty and gets appended 
+
+
+/**
+ * Returns string of full path name.
+ * Parents are separated from children by '>'
+ * which mimics the design in Google Drive
+ *
+ * @param {string} fullPath current path of folder
+ * @param {string} folderId identifier of folder for which to find fullPath
+ */
 function getFullPath(fullPath, folderId) {
   var parents = DriveApp.getFolderById(folderId).getParents();
   var parent = parents.next();
