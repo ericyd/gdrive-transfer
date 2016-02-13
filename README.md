@@ -16,6 +16,7 @@ This app will transfer ownership of a Google Drive folder, including ownership o
 * This cannot be undone!  Do not transfer a folder to an email address you do not know or recognize!!!
 * This script will send the new owner an email **for each folder and each file within the main folder**.  This can result in a huge number of emails to the new owner, but unfortunately there is no way to suppress this behavior programmatically.
 * If you do transfer it to the wrong person, immediately make a copy of the folder using my [Copy Folder tool](https://chrome.google.com/webstore/detail/copy-folder/kfbicpdhiofpicipfggljdhjokjblnhl).
+* This script can take a long time to execute based on the folder size.  For very large folders, transfer times greater than 1 hour are common.
 * Any folders or files that you do not currently own will not be transferred.
 
 ## Limitations
