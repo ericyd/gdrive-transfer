@@ -26,6 +26,8 @@ exports.files = function(folderId, folderArray) {
           
         } else {
           // Done!
+          console.log("Script finished at " + (new Date()));
+          
           $("#troubleshooting").show('blind');
           $("#please-review").show('blind');
           $("#complete").show('blind');
