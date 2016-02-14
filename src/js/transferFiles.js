@@ -44,7 +44,7 @@ exports.files = function(folderId, folderArray) {
         if ($("#errors").text() === "") {
             // Generate error message
             var errorMsg = "<b>Error:</b> Failed to transfer one or more files. The may be because you don't own all files, or because the folder contains a synced file (e.g. PDF, image, HTML file, etc.).<br /><b>Error message:</b> " + msg + ".";
-            $("#errors").append("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + errorMsg + "</div>");
+            $("#errors").html("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + errorMsg + "</div>");
         }
         
         if (folderArray.length > 0) {
