@@ -13,17 +13,15 @@
  */
 function getFolders(folderId, folderArray, newOwner, continuationTokens) {
     
-    var children,       // {FolderIterator}
-        nextChild,      // {Folder}
-        fullPath,       // {string}
-        grandChildren,  // {FolderIterator}
-        pair,           // {array}
-        currTime,       // {number}
-        timeIsUp,       // {boolean}
-        results = [];   // {array}
+    var children,           // {FolderIterator}
+        nextChild,          // {Folder}
+        grandChildren,      // {FolderIterator}
+        pair,               // {array}
+        currTime,           // {number}
+        timeIsUp = false;   // {boolean}
     
     // Google Apps Scripts have a maximum execution time of 6 minutes
-    var MAX_RUNNING_TIME = 5.7 * 60 * 1000;   // 5.7 minutes in milliseconds
+    var MAX_RUNNING_TIME = 0.057 * 60 * 1000;   // 5.7 minutes in milliseconds
     var startTime = (new Date()).getTime();
     
     
@@ -31,11 +29,15 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
     // if no tokens exist, get iterator from @param folderId
     if (continuationTokens.length === 0) {
         
+        Logger.log("Getting iterator from folderId");
+        
         // adding the editor first makes sure that 
         // all the transferred folders are added to the right parent folder
         children = DriveApp.getFolderById(folderId).addEditor(newOwner).getFolders();
                 
     } else {
+        
+        Logger.log("Getting iterator from iterator");
         
         children = DriveApp.continueFolderIterator( continuationTokens.pop() );
         
@@ -46,40 +48,51 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
     while ( children.hasNext() && !timeIsUp ) {
         
         // set variables for current iteration
-        currTime = (new Date()).getTime();
         nextChild = children.next();
+        
+        Logger.log("nextChild = " + nextChild);
+        
         grandChildren = nextChild.getFolders();
-        fullPath = getFullPath("", nextChild.getId());
-        fullPath = fullPath + nextChild.getName();
-        pair = [];
+        currTime = (new Date()).getTime();
+        timeIsUp = (currTime - startTime >= MAX_RUNNING_TIME);
+        
         
         
         // create pair of (Id, path), then push the pair to folderArray
-        pair.push(nextChild.getId());
-        pair.push(fullPath);
+        pair = [ nextChild.getId(), nextChild.getName() ];
         folderArray.push(pair);
         
-        currTime = (new Date()).getTime();
-        timeIsUp = (currTime - startTime >= MAX_RUNNING_TIME);
+        
         
         
         // if child has children, save continuation token and begin iterating through children
         if ( grandChildren.hasNext() ) {
             
-            continuationTokens.push( children.getContinuationToken() );
+            // save continuation token only if there are remaining siblings
+            if ( children.hasNext() ) {
+                
+                var burnOne = children.next();
+                
+                Logger.log("Pushing new continuation token for " + nextChild.getName() );
+                
+                var token = children.getContinuationToken();
+                
+                continuationTokens.push( token );
+                
+                showRest(token);
+                
+            }
             
             children = grandChildren;
         
-        // if no folders remain in iterator and continuationTokens exist, children = iterator of parent folder    
-        } else if ( !children.hasNext() && continuationTokens.length > 0) {
             
-            // traverse up the tree until an interator hasNext
-            while ( !children.hasNext() ) {
+        } 
+        
+        // if no folders remain in iterator and continuationTokens exist, children = last paused iterator
+        if ( !children.hasNext() && continuationTokens.length > 0) {
             
-                children = DriveApp.continueFolderIterator( continuationTokens.pop() );
-            
-            }
-            
+            children = DriveApp.continueFolderIterator( continuationTokens.pop() );
+                        
         }
         
     }
@@ -94,7 +107,7 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
     
     
     
-    return results.push( folderArray, continuationTokens );
+    return [ folderArray, continuationTokens ];
     
 }
 
@@ -102,7 +115,15 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
 
 
 
-
+function showRest(token) {
+    var iterator = DriveApp.continueFolderIterator(token);
+    var child;
+    while (iterator.hasNext()) {
+        child = iterator.next();
+        Logger.log("child name = " + child.getName());
+    }
+    
+}
 
 
 
