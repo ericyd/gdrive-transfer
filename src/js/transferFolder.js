@@ -11,6 +11,7 @@
 
 
 var $ = jQuery = require('jquery');
+require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/alert.js');
 var transferFiles = require('./transferFiles');
 
 exports.transfer = function (folderArray) {
@@ -35,7 +36,7 @@ exports.transfer = function (folderArray) {
       
       // If transfer failed, generate error message and still transferFiles for folder
       var errorMsg = "<b>Error:</b> Failed to transfer folder.  This most likely occurred because you aren't the owner of one of the sub-folders.<br /><b>Error message:</b> " + msg + ".";
-      $("#errors").append("<div class='alert alert-danger' role='alert'>" + errorMsg + "</div>");
+      $("#errors").append("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" + errorMsg + "</div>");
         
       transferFiles.files(folderId, folderArray);
       
