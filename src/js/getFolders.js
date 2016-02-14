@@ -7,7 +7,6 @@ var transferFolder = require('./transferFolder');
     
 */
 
-exports.run = collectInfo();
 
 /**
  * Extracts information for script execution
@@ -23,8 +22,9 @@ exports.run = collectInfo();
  * @param {Object} selectedFolder contains properties id, name, parentName
  * 
  * */
-
-function collectInfo(selectedFolder) {
+exports.run = function(selectedFolder) {
+  
+  console.log("Script started at " + (new Date()));
   
   var folderArray = [];
   var newOwner = $("#newOwner").val();
@@ -38,7 +38,7 @@ function collectInfo(selectedFolder) {
   
   return getFolders(folderId, folderArray, newOwner, []);
   
-}
+};
 
 
 /**
@@ -66,27 +66,31 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
       // if any continuation tokens exist, recurse
       if ( continuationTokens.length !== 0 ) {
         
+        console.log("continuation token found, resuming iteration");
         getFolders(folderId, folderArray, newOwner, continuationTokens);
       
       // process data and pass to transferFolder  
       } else {
         
+        console.log("no continuation token found, passing to transferFolder()");
+        
         var topFolderId = folderArray[0][0];
-        $("#troubleshooting").append("<a href='https://drive.google.com/open?id=" + topFolderId + "' target='_blank'>https://drive.google.com/open?id=" + topFolderId + "</a>")
+        $("#troubleshooting").append("<a href='https://drive.google.com/open?id=" + topFolderId + "' target='_blank'>https://drive.google.com/open?id=" + topFolderId + "</a>");
         
   
         // Update status for user
-        $("#status-title").html("Transferring folders <i class='fa fa-spinner fa-spin'></i>");
+        $("#status-title").html("Transferring folders <i class='fa fa-spinner fa-spin'></i> (click the folder icon to open a specific folder in Google Drive)");
         
         
         // build status-table rows
         var statusTable;
+        var icon = "<span class='fa-stack'><i class='fa fa-square-o fa-stack-2x'></i><i class='fa fa-folder-open-o fa-stack-1x'></i></span>";
         
         for (i = 0; i < folderArray.length; i++) {
   
           statusTable = "";
           statusTable += "<tr>";
-          statusTable += "<td>" + folderArray[i][1] + "</td>"; // path
+          statusTable += "<td><a href='https://drive.google.com/open?id=" + folderArray[i][0] + "' target='_blank'>" + icon + "</a> " + folderArray[i][1] + "</td>"; // path
           statusTable += "<td id='" + folderArray[i][0] + "'><i>Waiting...</i></td>"; // id
           statusTable += "</tr>";
   
@@ -103,12 +107,15 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
       
     })
     .withFailureHandler(function(msg) {
+      
+      console.log("error getting folders");
+      
       var errormsg = "<div class='alert alert-danger' role='alert'><b>Error:</b> There was an error retrieving folder structure.<br />";
       errormsg += "<b>Error message:</b> " + msg + ".<br>";
       errormsg += "Please try again. Make sure you have correct permissions to transfer this folder, and that you are using Google Chrome or Chromium</div>";
-      $("#errors").append(errormsg);
+      $("#errors").html(errormsg);
       $("#status-title").html("Error");
       
     })
-    .getFolders(folderId, folderArray, newOwner, []);
+    .getFolders(folderId, folderArray, newOwner, continuationTokens);
 }
