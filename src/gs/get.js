@@ -1,7 +1,13 @@
 /**
  * Returns array folderArray containing the top folder and all descendent folders
  * Each element of folderArray is a two-element array
- * The first element is {string} a folder ID, the second element is {string} the folder's path name
+ * The first element is {string} a folder ID, the second element is {string} the folder's path name.
+ * 
+ * To accommodate Google Apps Script runtime quotas (max = 6 mins),
+ * this script will return an array of continuationTokens for folders that 
+ * still need to be saved.  Due to a bug in Google Apps Script continuation tokens (https://code.google.com/p/google-apps-script-issues/issues/detail?id=4116)
+ * this script will traverse the folder structure level by level.  That is,
+ * it will save all siblings before it moves on to any child folders for any given iterator.
  * 
  *
  * @param {string} folderId identification string for top folder
@@ -29,15 +35,11 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
     // if no tokens exist, get iterator from @param folderId
     if (continuationTokens.length === 0) {
         
-        Logger.log("Getting iterator from folderId");
-        
         // adding the editor first makes sure that 
         // all the transferred folders are added to the right parent folder
         children = DriveApp.getFolderById(folderId).addEditor(newOwner).getFolders();
                 
     } else {
-        
-        Logger.log("Getting iterator from iterator");
         
         children = DriveApp.continueFolderIterator( continuationTokens.pop() );
         
@@ -49,9 +51,6 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
         
         // set variables for current iteration
         nextChild = children.next();
-        
-        Logger.log("nextChild = " + nextChild);
-        
         grandChildren = nextChild.getFolders();
         currTime = (new Date()).getTime();
         timeIsUp = (currTime - startTime >= MAX_RUNNING_TIME);
