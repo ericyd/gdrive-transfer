@@ -15,7 +15,6 @@ require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/modal.js
 exports.get = function() {  
   // validate form
   // todo: create validator
-  console.log("Script started at " + (new Date()));
   
   var newOwner = $("#newOwner").val();
   
