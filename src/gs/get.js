@@ -21,7 +21,7 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
         timeIsUp = false;   // {boolean}
     
     // Google Apps Scripts have a maximum execution time of 6 minutes
-    var MAX_RUNNING_TIME = 0.057 * 60 * 1000;   // 5.7 minutes in milliseconds
+    var MAX_RUNNING_TIME = 5.7 * 60 * 1000;   // 5.7 minutes in milliseconds
     var startTime = (new Date()).getTime();
     
     
@@ -68,30 +68,14 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
         // if child has children, save continuation token and begin iterating through children
         if ( grandChildren.hasNext() ) {
             
-            // save continuation token only if there are remaining siblings
-            if ( children.hasNext() ) {
-                
-                var burnOne = children.next();
-                
-                Logger.log("Pushing new continuation token for " + nextChild.getName() );
-                
-                var token = children.getContinuationToken();
-                
-                continuationTokens.push( token );
-                
-                showRest(token);
-                
-            }
-            
-            children = grandChildren;
-        
+            continuationTokens.push( grandChildren.getContinuationToken() );
             
         } 
         
-        // if no folders remain in iterator and continuationTokens exist, children = last paused iterator
+        // if no folders remain in iterator and continuationTokens exist, children = next iterator
         if ( !children.hasNext() && continuationTokens.length > 0) {
             
-            children = DriveApp.continueFolderIterator( continuationTokens.pop() );
+            children = DriveApp.continueFolderIterator( continuationTokens.shift() );
                         
         }
         
@@ -112,18 +96,6 @@ function getFolders(folderId, folderArray, newOwner, continuationTokens) {
 }
 
 
-
-
-
-function showRest(token) {
-    var iterator = DriveApp.continueFolderIterator(token);
-    var child;
-    while (iterator.hasNext()) {
-        child = iterator.next();
-        Logger.log("child name = " + child.getName());
-    }
-    
-}
 
 
 
