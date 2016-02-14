@@ -8,7 +8,7 @@ require('../../node_modules/jquery-ui/effect-blind.js');
 var getValues = require('./getValues');
 var picker = require('./picker');
 
-$(document).ready(function() {
+$(function() {
   $("#status").hide();
   $("#troubleshooting").hide();
   $("#complete").hide();
@@ -23,8 +23,8 @@ $("#thisForm").submit(function( event ) {
 
 $("#selectFolderButton").click(function() {
   picker.showPicker();
-})
+});
 
 $("#confirm-button").click(function() {
   getValues.confirm();
-})
+});

@@ -45,4 +45,4 @@ exports.confirm = function() {
   
   getFolders.run(selectedFolder);
   
-}
+};

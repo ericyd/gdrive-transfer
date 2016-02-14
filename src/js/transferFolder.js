@@ -42,4 +42,4 @@ exports.transfer = function (folderArray) {
     })
     
     .transferFolder(folderId, newOwner);
-}
+};
