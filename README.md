@@ -35,4 +35,4 @@ This app does not change sharing permissions on any files or folders, nor does p
 
 ## Bugs? Comments? Questions?
 
-Contact the author at eric_yd@yahoo.com
+Contact the author at eric@ericyd.com
