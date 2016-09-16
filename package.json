@@ -24,7 +24,8 @@
     "url": "https://github.com/ericyd/gdrive-transfer/issues"
   },
   "homepage": "https://github.com/ericyd/gdrive-transfer#readme",
-  "browserify": "~13.0.0",
+  "devDependencies": {
+    "browserify": "~13.0.0",
     "chai": "^3.5.0",
     "cutestrap": "^1.2.3",
     "express": "^4.14.0",
@@ -48,7 +49,7 @@
     "svg2png": "^3.0.0",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.1.0"
-  },
+  }
   "dependencies": {
   }
 }
