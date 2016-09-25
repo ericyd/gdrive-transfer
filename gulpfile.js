@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var jshint = require('gulp-jshint');
+// var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
 var insert = require('gulp-insert');
 var autoprefixer = require('gulp-autoprefixer');
@@ -165,9 +165,9 @@ gulp.task('img', buildImages);
 
 
 gulp.task('jslint', function() {
-    return gulp.src('./src/js/*.js')
+    return /*gulp.src('./src/js/*.js')
         .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+        .pipe(jshint.reporter('default'));*/
 })
 
 
