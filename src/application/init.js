@@ -16,7 +16,7 @@ function doGet(e) {
       .setSandboxMode(HtmlService.SandboxMode.IFRAME);
 }
 
-
+// TODO: remove selectedFolder.destLocation
 
 
 /**
@@ -26,9 +26,13 @@ function doGet(e) {
  * Add link for destination folder to logger spreadsheet.
  * Return IDs of created destination folder and logger spreadsheet
  * 
- * @param {object} selectedFolder contains srcId, srcParentId, destName, permissions, srcName
+ * @param {object} selectedFolder contains srcId, srcParentId, newOwner, srcName
  */
 function initialize(selectedFolder) {
+
+    // TODO: refactor this entire function - there is no "destination folder" in this function at all
+    // TODO: change all instances of destName to newOwner
+    // TODO: change all references from #newFolder to #newOwner
 
     /*****************************
      * Declare variables used in project initialization 
@@ -70,16 +74,16 @@ function initialize(selectedFolder) {
     /*****************************
      * Set UserProperties values and save properties to propertiesDoc
      */
-    setUserPropertiesStore(selectedFolder.spreadsheetId, selectedFolder.propertiesDocId, selectedFolder.destId, "false");
+    setUserPropertiesStore(selectedFolder.spreadsheetId, selectedFolder.propertiesDocId, selectedFolder.newOwner, "false");
     saveProperties(selectedFolder);
 
 
 
 
     /*****************************
-     * Add link for destination folder to logger spreadsheet
+     * Add link to folder in logger spreadsheet
      */
-    SpreadsheetApp.openById(spreadsheet.id).getSheetByName("Log").getRange(2,5).setValue('=HYPERLINK("https://drive.google.com/open?id=' + destFolder.id + '","'+ selectedFolder.destName + '")');
+    SpreadsheetApp.openById(spreadsheet.id).getSheetByName("Log").getRange(2,5).setValue('=HYPERLINK("https://drive.google.com/open?id=' + selectedFolder.srcId + '","'+ selectedFolder.srcName + '")');
     
 
     

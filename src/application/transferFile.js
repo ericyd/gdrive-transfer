@@ -7,7 +7,11 @@
  * 
  * @param {Object} file File Resource with metadata from source file
  */
-function copyFile(file, map) {
+
+
+// TODO: rename and refactor application to be transferFile()
+// TODO: change the Drive API call to change the owner, not copy the file
+function transferFile(file, map) {
     // if folder, use insert, else use copy
     if ( file.mimeType == "application/vnd.google-apps.folder") {
         try {

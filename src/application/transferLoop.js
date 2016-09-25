@@ -58,7 +58,7 @@ function copy() {
 
             exponentialBackoff(createTrigger,
                 'Error setting trigger.  There has been a server error with Google Apps Script.' +
-                'To successfully finish copying, please refresh the app and click "Resume Copying"' +
+                'To successfully finish transferring, please refresh the app and click "Resume Transferring"' +
                 'and follow the instructions on the page.');
         }
         return;
@@ -84,7 +84,7 @@ function copy() {
      */
     if (properties.leftovers.items && properties.leftovers.items.length > 0) {
         properties.destFolder = properties.leftovers.items[0].parents[0].id;
-        processFileList(properties.leftovers.items, timeZone, properties.permissions, userProperties, timers, properties.map, ss);    
+        processFileList(properties.leftovers.items, timeZone, userProperties, timers, properties.map, ss);    
     } 
     
 
@@ -104,6 +104,7 @@ function copy() {
     while (properties.remaining.length > 0 && !timers.timeIsUp && !timers.stop) {
         // if pages remained in the previous query, use them first
         if (properties.pageToken) {
+            // TODO: Figure out what this needs to be - it certainly won't be "desFolder"
             currFolder = properties.destFolder;
         } else {
             currFolder = properties.remaining.shift();
@@ -127,7 +128,7 @@ function copy() {
 
             // Send items to processFileList() to copy if there is anything to copy
             if (fileList.items && fileList.items.length > 0) {
-                processFileList(fileList.items, timeZone, properties.permissions, userProperties, timers, properties.map, ss);
+                processFileList(fileList.items, timeZone, userProperties, timers, properties.map, ss);
             } else {
                 Logger.log('No children found.');
             }
@@ -149,13 +150,13 @@ function copy() {
      */     
     // Case: user manually stopped script
     if (timers.stop) {
-        saveState(fileList, "Stopped manually by user.  Please use 'Resume' button to restart copying", ss);
+        saveState(fileList, "Stopped manually by user.  Please use 'Resume' button to restart transferring", ss);
         deleteTrigger(userProperties.getProperties().triggerId);
         return;
 
     // Case: maximum execution time has been reached
     } else if (timers.timeIsUp) {
-        saveState(fileList, "Paused due to Google quota limits - copy will resume in 1-2 minutes", ss);
+        saveState(fileList, "Paused due to Google quota limits - transfer will resume in 1-2 minutes", ss);
 
     // Case: the copy is complete!    
     } else {  

@@ -7,8 +7,7 @@
  */
 function saveProperties(properties) {
     try{properties.remaining = JSON.stringify(properties.remaining);}catch(e){}
-    try{properties.map = JSON.stringify(properties.map);}catch(e){}
-    try{properties.permissions = JSON.stringify(properties.permissions);}catch(e){} 
+    try{properties.map = JSON.stringify(properties.map);}catch(e){} 
     try{properties.leftovers = JSON.stringify(properties.leftovers);}catch(e){}
     if (properties.leftovers && properties.leftovers.items) {
         try{properties.leftovers.items = JSON.stringify(properties.leftovers.items);}catch(e){}

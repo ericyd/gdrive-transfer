@@ -19,7 +19,6 @@ function loadProperties() {
     try {
         try{properties.remaining = JSON.parse(properties.remaining);}catch(e){}
         try{properties.map = JSON.parse(properties.map);}catch(e){} 
-        try{properties.permissions = JSON.parse(properties.permissions);}catch(e){}
         try{properties.leftovers = JSON.parse(properties.leftovers);}catch(e){}
         if (properties.leftovers && properties.leftovers.items) {
             try{properties.leftovers.items = JSON.parse(properties.leftovers.items);}catch(e){}

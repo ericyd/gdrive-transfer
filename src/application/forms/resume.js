@@ -13,7 +13,7 @@ function resume(selectedFolder) {
 
     var priorCopy = findPriorCopy(selectedFolder.srcId);
 
-    setUserPropertiesStore(priorCopy.spreadsheetId, priorCopy.propertiesDocId, selectedFolder.destId, "true")
+    setUserPropertiesStore(priorCopy.spreadsheetId, priorCopy.propertiesDocId, selectedFolder.newOwner, "true")
 
     return {
         spreadsheetId: priorCopy.spreadsheetId,

@@ -1,6 +1,5 @@
 /**
  * Create the root folder of the new copy.
- * Copy permissions from source folder to destination folder if copyPermissions == yes
  * 
  * @param {string} srcName - Name of the source folder
  * @param {string} destName - Name of the destination folder being created
@@ -27,10 +26,6 @@ function initializeDestinationFolder(selectedFolder, today) {
     }
     catch(err) {
         return err.message;
-    }
-
-    if (selectedFolder.permissions) {
-        copyPermissions(selectedFolder.srcId, null, destFolder.id);
     }
 
     return destFolder;
