@@ -1,6 +1,6 @@
 /**
  * Loops through array of files.items,
- * Applies Drive function to each (i.e. copy),
+ * Applies Drive function to each (i.e. transfer),
  * Logs result,
  * Get current runtime and decide if processing needs to stop. 
  * 

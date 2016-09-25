@@ -83,7 +83,7 @@ module.exports = {
         
 
         /**
-         * Execute when resuming folder copy.
+         * Execute when resuming folder transfer.
          *
          * @param {Object} event
          */
@@ -140,7 +140,7 @@ module.exports = {
 
 
         /**
-         * Execute when beginning new folder copy
+         * Execute when beginning new folder transfer
          *
          * Bind form submission action.
          * Disable form elements,
@@ -167,9 +167,8 @@ module.exports = {
                 // Valid!
                 DOM.onValid();
                 
-                // Get values from form and selected folder to initialize copy        
+                // Get values from form and selected folder to initialize transfer        
                 picker.folder.newOwner = $("#newOwner").val();
-                picker.folder.destLocation = $("#destination-group").find("input:checked").val();
 
                 // count number of triggers
                 google.script.run
@@ -240,7 +239,7 @@ module.exports = {
 /**
  * Hide 'status' indicator, and show success message.
  * Include links to logger spreadsheet and destination folder
- * so user can monitor progress of the copy.
+ * so user can monitor progress of the transfer.
  * Alert user that they can safely close the window now.
  * 
  * @param {Object} results contains id string for logger spreadsheet and destination folder
@@ -262,7 +261,7 @@ function success(results) {
     
     
     
-    google.script.run.copy();
+    google.script.run.transfer();
     
     
 }

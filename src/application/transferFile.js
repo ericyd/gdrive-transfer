@@ -1,5 +1,5 @@
 /**
- * Try to copy file to destination parent.
+ * Try to transfer file to new owner.
  * Success:
  *   1. Log success in spreadsheet with file ID
  * Failure:

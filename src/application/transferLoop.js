@@ -1,12 +1,10 @@
 /**
- * Copy folders and files from source to destination.
+ * Transfer folders and files from old to new owner.
  * Get parameters from userProperties,
  * Loop until time runs out,
  * then call timeout methods, saveProperties and createTrigger.
- *
- * @param {boolean} resuming whether or not the copy call is resuming an existing folder copy or starting fresh
  */
-function copy() { 
+function transfer() { 
     /*****************************
      * Initialize timers, initialize variables for script, and update current time
      */
@@ -126,7 +124,7 @@ function copy() {
                 log(ss, [err.message, err.fileName, err.lineNumber]);
             }
 
-            // Send items to processFileList() to copy if there is anything to copy
+            // Send items to processFileList() to transfer if there is anything to transfer
             if (fileList.items && fileList.items.length > 0) {
                 processFileList(fileList.items, timeZone, userProperties, timers, properties.map, ss);
             } else {
@@ -158,7 +156,7 @@ function copy() {
     } else if (timers.timeIsUp) {
         saveState(fileList, "Paused due to Google quota limits - transfer will resume in 1-2 minutes", ss);
 
-    // Case: the copy is complete!    
+    // Case: the transfer is complete!    
     } else {  
         // Delete trigger created at beginning of script, 
         // move propertiesDoc to trash, 

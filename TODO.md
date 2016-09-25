@@ -4,6 +4,8 @@
     a. http://codepen.io/imprakash/pen/GgNMXO/ 
     b. http://codepen.io/takaneichinose/pen/BKVNXe
     c. https://codepen.io/ohnoitsaustin/pen/zGmJjz
-2. Merge the JS with the gdrive-copy JS so that buttons have the correct event listeners, etc.
 3. Eliminate unnecessary GAS code 
-4. rename GAS files to indicate Transfering, not Copying
+4. remove selectedFolder.map, and all references in application
+5. update createLoggerSpreadsheet() to set new owner, not copy
+6. change the Drive API call to change the owner, not copy the file
+7. search for an replace new-copy-button, copyFolderButton

@@ -2,7 +2,7 @@
  * Created by eric on 5/18/16.
  */
 /**
- * Find prior copy folder instance.
+ * Find prior transfer folder instance.
  * Find propertiesDoc and logger spreadsheet, and save IDs to userProperties, which will be used by loadProperties.
  *
  * @param selectedFolder object containing information on folder selected in app
@@ -11,13 +11,13 @@
 
 function resume(selectedFolder) {
 
-    var priorCopy = findPriorCopy(selectedFolder.srcId);
+    var priorTransfer = findPriorTransfer(selectedFolder.srcId);
 
-    setUserPropertiesStore(priorCopy.spreadsheetId, priorCopy.propertiesDocId, selectedFolder.newOwner, "true")
+    setUserPropertiesStore(priorTransfer.spreadsheetId, priorTransfer.propertiesDocId, selectedFolder.newOwner, "true")
 
     return {
-        spreadsheetId: priorCopy.spreadsheetId,
-        destId: selectedFolder.srcId,
+        spreadsheetId: priorTransfer.spreadsheetId,
+        newOwner: selectedFolder.newOwner,
         resuming: true
     };
 }

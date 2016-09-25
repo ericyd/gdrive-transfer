@@ -12,11 +12,9 @@ function doGet(e) {
   
   // Build and return HTML in IFRAME sandbox mode.
   return template.evaluate()
-      .setTitle('Copy a Google Drive folder')
+      .setTitle('Transfer a Google Drive folder')
       .setSandboxMode(HtmlService.SandboxMode.IFRAME);
 }
-
-// TODO: remove selectedFolder.destLocation
 
 
 /**
@@ -37,20 +35,17 @@ function initialize(selectedFolder) {
     /*****************************
      * Declare variables used in project initialization 
      */
-    var destFolder,     // {Object} instance of Folder class representing destination folder
-        spreadsheet,    // {Object} instance of Spreadsheet class
+    var spreadsheet,    // {Object} instance of Spreadsheet class
         propertiesDocId,  // {Object} metadata for Google Document created to hold properties
-        today = Utilities.formatDate(new Date(), "GMT-5", "MM-dd-yyyy"); // {string} date of copy
+        today = Utilities.formatDate(new Date(), "GMT-5", "MM-dd-yyyy"); // {string} date of transfer
     
 
     /*****************************
-     * Create Files used in copy process
+     * Create Files used in transfer process
      */
-    destFolder = initializeDestinationFolder(selectedFolder, today);
+    spreadsheet = createLoggerSpreadsheet(today, selectedFolder.srcId);
 
-    spreadsheet = createLoggerSpreadsheet(today, destFolder.id);
-
-    propertiesDocId = createPropertiesDocument(destFolder.id);
+    propertiesDocId = createPropertiesDocument(selectedFolder.srcId);
 
     
 
@@ -58,14 +53,12 @@ function initialize(selectedFolder) {
     /*****************************
      * Build/add properties to selectedFolder so it can be saved to the properties doc
      */
-    selectedFolder.destId = destFolder.id;
+    // selectedFolder.destId = destFolder.id;
     selectedFolder.spreadsheetId = spreadsheet.id;
     selectedFolder.propertiesDocId = propertiesDocId;
 
     // initialize map with top level source and destination folder
     selectedFolder.leftovers = {}; // {Object} FileList object (returned from Files.list) for items not processed in prior execution (filled in saveState)
-    selectedFolder.map = {};       // {Object} map of source ids (keys) to destination ids (values)
-    selectedFolder.map[selectedFolder.srcId] = selectedFolder.destId;
     selectedFolder.remaining = [selectedFolder.srcId];
 
     
@@ -93,7 +86,7 @@ function initialize(selectedFolder) {
      */
     return {
         spreadsheetId: selectedFolder.spreadsheetId,
-        destId: selectedFolder.destId,
+        newOwner: selectedFolder.newOwner,
         resuming: false
     };
     

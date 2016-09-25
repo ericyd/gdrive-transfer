@@ -39,9 +39,9 @@ module.exports = {
         $("#errors").html("");
         $(".selectOtherFolder").hide("blind");
         $("#resume-button").attr("disabled", "disabled");
-        $("#new-copy-button").attr("disabled", "disabled");
+        $("#new-transfer-button").attr("disabled", "disabled");
         
-        $("#copyFolderButton").button('loading');
+        $("#transferFolderButton").button('loading');
         $("#resumeFolderSubmit").button('loading');
         $("#newFolder").prop('disabled', true);
         

@@ -1,24 +1,24 @@
 /**
- * Create the spreadsheet used for logging progress of the copy
+ * Create the spreadsheet used for logging progress of the transfer
  * 
  * @param {string} today - Stringified version of today's date
- * @param {string} destId - ID of the destination folder, created in createDestinationFolder
+ * @param {string} srcId - ID of the source folder
  * 
  * @return {Object} metadata for logger spreadsheet, or error on fail 
  */
-function createLoggerSpreadsheet(today, destId) {
+function createLoggerSpreadsheet(today, srcId) {
     try {
         return Drive.Files.copy(
             {
-            "title": "Copy Folder Log " + today,
+            "title": "Transfer Folder Log " + today,
             "parents": [
                 {
                     "kind": "drive#fileLink",
-                    "id": destId
+                    "id": srcId
                 }
             ]
             },
-            "17xHN9N5KxVie9nuFFzCur7WkcMP7aLG4xsPis8Ctxjg"
+            "1hJP-sjo9416KO965r9IMhJGRDkmZuGrtpOb8T_F950g"
         );   
     }
     catch(err) {
