@@ -24,6 +24,7 @@
     "url": "https://github.com/ericyd/gdrive-transfer/issues"
   },
   "homepage": "https://github.com/ericyd/gdrive-transfer#readme",
+  "dependencies": {},
   "devDependencies": {
     "browserify": "~13.0.0",
     "chai": "^3.5.0",
@@ -43,13 +44,12 @@
     "gulp-sass": "^2.1.1",
     "gulp-uglify": "~1.5.1",
     "hogan.js": "^3.0.2",
+    "jshint": "^2.9.3",
     "mocha": "^2.5.3",
     "sass-colorscheme": "^0.4.0",
     "selenium-webdriver": "^2.53.3",
-    "svg2png": "^3.0.0",
+    "svg2png": "3.1.0",
     "vinyl-buffer": "~1.0.0",
     "vinyl-source-stream": "~1.1.0"
-  },
-  "dependencies": {
   }
 }

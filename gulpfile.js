@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var htmlmin = require('gulp-htmlmin');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-// var jshint = require('gulp-jshint');
+var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
 var insert = require('gulp-insert');
 var autoprefixer = require('gulp-autoprefixer');
@@ -174,6 +174,9 @@ gulp.task('jslint', function() {
 
 function buildImages() {
     let img_path = "./dist/icons/";
+
+    // TODO: Update image paths so this function works 
+
     fs.stat(img_path, (err, stat) => {
         if (err) fs.mkdir(img_path);    
     });
