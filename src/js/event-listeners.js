@@ -138,6 +138,10 @@ module.exports = {
         folderTextbox.addEventListener('keyup', textboxHandlers.getFileData, false);
         module.exports.addSelectButtonListeners();
 
+        $("#trigger-modal").click(function() {
+            $("#newOwnerEmail").text($("#newOwner").val());
+        });
+
 
         /**
          * Execute when beginning new folder transfer
@@ -155,7 +159,6 @@ module.exports = {
             window.location.hash = '#'; 
 
             $("#trigger-modal").hide(); 
-
 
             var errormsg; 
             
