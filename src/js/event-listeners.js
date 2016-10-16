@@ -151,7 +151,12 @@ module.exports = {
          * @param {Object} event 
          */
         $("#folderForm").submit(function( event ) { 
-            
+            // clear the modal
+            window.location.hash = '#'; 
+
+            $("#trigger-modal").hide(); 
+
+
             var errormsg; 
             
             // validate
