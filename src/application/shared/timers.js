@@ -15,4 +15,4 @@ var timers = {
         this.timeIsUp = (this.currTime - this.START_TIME >= this.MAX_RUNNING_TIME);
         this.stop = userProperties.getProperties().stop == 'true';
     }
-}
+};

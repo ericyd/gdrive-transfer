@@ -13,7 +13,7 @@ function resume(selectedFolder) {
 
     var priorTransfer = findPriorTransfer(selectedFolder.srcId);
 
-    setUserPropertiesStore(priorTransfer.spreadsheetId, priorTransfer.propertiesDocId, selectedFolder.newOwner, "true")
+    setUserPropertiesStore(priorTransfer.spreadsheetId, priorTransfer.propertiesDocId, selectedFolder.newOwner, "true");
 
     return {
         spreadsheetId: priorTransfer.spreadsheetId,

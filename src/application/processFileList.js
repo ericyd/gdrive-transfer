@@ -7,8 +7,8 @@
  * @param {Array} items the list of files over which to iterate
  */
 function processFileList(items, newOwner, timeZone, userProperties, timers, ss) {
-    var item
-      , newPermissions;
+    var item;
+    var newPermissions;
     
     while (items.length > 0 && !timers.timeIsUp && !timers.stop) {
         /*****************************
