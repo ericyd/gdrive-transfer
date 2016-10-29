@@ -180,7 +180,7 @@ function buildImages() {
         if (err) fs.mkdir(img_path);    
     });
     
-    /* 
+     
     fs.readFile("./images/svg/small-banner.svg", (err, data) => {
         if (err) throw err;
         svg2png(data, { width: 440, height: 280 })
@@ -198,7 +198,7 @@ function buildImages() {
             }))
             .catch(e => console.error(e));
     });
-    */
+    
     
     let sizes = ['256','128','96','64','48','32','16'];
     
