@@ -36,6 +36,8 @@ function initialize(selectedFolder) {
         today = Utilities.formatDate(new Date(), "GMT-5", "MM-dd-yyyy"); // {string} date of transfer
     
 
+
+
     /*****************************
      * Create Files used in transfer process
      */
@@ -43,7 +45,22 @@ function initialize(selectedFolder) {
 
     propertiesDocId = createPropertiesDocument(selectedFolder.srcId);
 
+
     
+    /*****************************
+     * Transfer source folder first
+     */
+    var rootFolder = transferFile({'id':selectedFolder.srcId}, selectedFolder.newOwner);
+    // log result
+    log(ss, [
+        !rootFolder.message ? "Transferred" : "Error, " + rootFolder,
+        selectedFolder.srcName,
+        '=HYPERLINK("https://drive.google.com/open?id=' + selectedFolder.srcId + '","'+ selectedFolder.srcName + '")',
+        selectedFolder.srcId,
+        Utilities.formatDate(new Date(), "MM-dd-yy hh:mm:ss aaa")
+    ]);
+
+
 
     
     /*****************************
