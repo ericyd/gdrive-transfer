@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="920"
@@ -17,7 +18,30 @@
    inkscape:version="0.91 r13725"
    sodipodi:docname="large-banner.svg">
   <defs
-     id="defs4166" />
+     id="defs4166">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient8197"
+       id="linearGradient8203"
+       x1="-205.04362"
+       y1="254.2411"
+       x2="-205.04362"
+       y2="112.81974"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(7.4045006,0,0,4.9136178,2026.992,-194.39978)" />
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient8197">
+      <stop
+         style="stop-color:#268629;stop-opacity:1"
+         offset="0"
+         id="stop8199" />
+      <stop
+         style="stop-color:#2d9438;stop-opacity:0.43195266"
+         offset="1"
+         id="stop8201" />
+    </linearGradient>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -26,7 +50,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-46.428571"
+     inkscape:cx="-157.14286"
      inkscape:cy="520"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -53,5 +77,72 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-372.36216)" />
+     transform="translate(0,-372.36216)">
+    <rect
+       style="display:inline;fill:url(#linearGradient8203);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:5.41364241;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8195"
+       width="920"
+       height="680"
+       x="0"
+       y="372.36218" />
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:5.39326763;stroke-linejoin:bevel;fill-opacity:1"
+       inkscape:connector-curvature="0"
+       d="m 191.65325,590.66027 c -46.52509,-10e-4 -84.23856,40.38356 -84.23856,90.20261 0.0389,40.51378 25.29902,76.03078 61.76128,86.83917 C 93.874122,778.98482 34.305329,797.54622 34.305329,896.04841 l 0,103.44428 316.374081,0 0,-103.44428 C 247.91769,734.87506 272.8133,811.03234 275.89181,680.86288 c 0.003,-49.81905 -37.71347,-90.20633 -84.23856,-90.20261 z"
+       id="path4720" />
+    <path
+       id="path4716"
+       d="m 285.50607,590.65912 a 84.238556,90.202607 0 0 0 -84.23856,90.20261 84.238556,90.202607 0 0 0 61.76127,86.83917 c -75.30184,11.28276 -134.87064,29.84417 -134.87064,128.34635 l 0,103.44428 316.37409,0 0,-103.44428 c 0,-98.92745 -60.08304,-117.22915 -135.85048,-128.4989 a 84.238556,90.202607 0 0 0 61.06287,-86.68662 84.238556,90.202607 0 0 0 -84.23855,-90.20261 z"
+       inkscape:connector-curvature="0"
+       style="stroke:#000000;stroke-width:5.39326763;stroke-linejoin:bevel" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:8.8316555;stroke-linejoin:bevel"
+       inkscape:connector-curvature="0"
+       d="M 235.78433,973.13718 336.159,906.35213 235.91289,841.5911"
+       id="path4722" />
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:8.8316555;stroke-linejoin:bevel"
+       inkscape:connector-curvature="0"
+       d="m 335.8706,906.35585 -260.175662,0"
+       id="path4724" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:85.63626862px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="25.585135"
+       y="514.73853"
+       id="text5302"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5304"
+         x="25.585135"
+         y="514.73853"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:107.04533386px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro'">Transfer Ownership</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:62.65028381px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="691.43829"
+       y="694.09259"
+       id="text5306"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5308"
+         x="701.41095"
+         y="694.09259"
+         style="text-align:center;text-anchor:middle">Transfer all </tspan><tspan
+         sodipodi:role="line"
+         x="701.41095"
+         y="772.40546"
+         id="tspan5312"
+         style="text-align:center;text-anchor:middle">contents of a </tspan><tspan
+         sodipodi:role="line"
+         x="701.41095"
+         y="850.71832"
+         id="tspan5316"
+         style="text-align:center;text-anchor:middle">Google Drive </tspan><tspan
+         sodipodi:role="line"
+         x="691.43829"
+         y="929.03113"
+         id="tspan5318"
+         style="text-align:center;text-anchor:middle">folder</tspan></text>
+  </g>
 </svg>
