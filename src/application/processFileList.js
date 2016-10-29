@@ -31,7 +31,7 @@ function processFileList(items, newOwner, timeZone, userProperties, timers, ss) 
          * Log result
          */
         log(ss, [
-            !newPermissions.message ? "Transferred" : "Error, " + newPermissions,
+            !newPermissions.message ? "Transferred" : "Error, " + newPermissions.message,
             item.title,
             '=HYPERLINK("https://drive.google.com/open?id=' + item.id + '","'+ item.title + '")',
             item.id,

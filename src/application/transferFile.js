@@ -9,20 +9,24 @@
  */
 
 function transferFile(file, newOwner) {
-    
-    try {
-        return Drive.Permissions.insert(
-        {
-            "role": "owner",
-            "type": "user",
-            "value": newOwner
-        },
-        file.id,
-        {
-            'sendNotificationEmails': 'false'
-        });
-    } catch (err) {
-        log(null, [err.message, err.fileName, err.lineNumber]);
-        return err;
+    // TODO: get the active user and pass it to this function so I don't need to call this for every file
+    if (DriveApp.getFileById(file.id).getOwner() === Session.getActiveUser()) {
+
+        try {
+            return Drive.Permissions.insert(
+            {
+                "role": "owner",
+                "type": "user",
+                "value": newOwner
+            },
+            file.id,
+            {
+                'sendNotificationEmails': 'false'
+            });
+        } catch (err) {
+            log(null, [err.message, err.fileName, err.lineNumber]);
+            return err;
+        }
     }
+    return {message: "you aren't the owner of this file/folder"}
 }
