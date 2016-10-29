@@ -82,7 +82,7 @@ function transfer() {
      */
     if (properties.leftovers.items && properties.leftovers.items.length > 0) {
         properties.destFolder = properties.leftovers.items[0].parents[0].id;
-        processFileList(properties.leftovers.items, timeZone, userProperties, timers, ss);    
+        processFileList(properties.leftovers.items, properties.newOwner, timeZone, userProperties, timers, ss);    
     } 
     
 
@@ -126,7 +126,7 @@ function transfer() {
 
             // Send items to processFileList() to transfer if there is anything to transfer
             if (fileList.items && fileList.items.length > 0) {
-                processFileList(fileList.items, timeZone, userProperties, timers, ss);
+                processFileList(fileList.items, properties.newOwner, timeZone, userProperties, timers, ss);
             } else {
                 Logger.log('No children found.');
             }

@@ -107,7 +107,6 @@ gulp.task('gs', function() {
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
         .pipe(concat('application.gs'))
-        .pipe(gulpif(isProd, uglify()))
         .pipe(gulp.dest('dist'));
     
 })
