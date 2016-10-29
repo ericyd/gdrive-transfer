@@ -180,7 +180,7 @@ function buildImages() {
         if (err) fs.mkdir(img_path);    
     });
     
-     
+    /* 
     fs.readFile("./images/svg/small-banner.svg", (err, data) => {
         if (err) throw err;
         svg2png(data, { width: 440, height: 280 })
@@ -198,11 +198,12 @@ function buildImages() {
             }))
             .catch(e => console.error(e));
     });
+    */
     
     let sizes = ['256','128','96','64','48','32','16'];
     
     for (let i = 0; i < sizes.length; i++) {
-        fs.readFile("./images/svg/cp-icon.svg", (err, data) => {
+        fs.readFile("./images/svg/transfer-icon.svg", (err, data) => {
             if (err) throw err;
             svg2png(data, { width: sizes[i], height: sizes[i] })
                 .then(buffer => fs.writeFile(img_path + "cp-icon-" + sizes[i] + ".png", buffer, (err) => {
