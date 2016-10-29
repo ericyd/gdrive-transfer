@@ -51,16 +51,7 @@ function initialize(selectedFolder) {
      * Transfer source folder first
      */
     var rootFolder = transferFile({'id':selectedFolder.srcId}, selectedFolder.newOwner);
-    // log result
-    log(ss, [
-        !rootFolder.message ? "Transferred" : "Error, " + rootFolder,
-        selectedFolder.srcName,
-        '=HYPERLINK("https://drive.google.com/open?id=' + selectedFolder.srcId + '","'+ selectedFolder.srcName + '")',
-        selectedFolder.srcId,
-        Utilities.formatDate(new Date(), "MM-dd-yy hh:mm:ss aaa")
-    ]);
-
-
+    
 
     
     /*****************************
