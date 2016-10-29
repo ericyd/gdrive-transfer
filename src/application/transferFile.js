@@ -11,7 +11,7 @@
 
 // TODO: rename and refactor application to be transferFile()
 // TODO: change the Drive API call to change the owner, not copy the file
-function transferFile(file, map) {
+function transferFile(file) {
     // if folder, use insert, else use copy
     if ( file.mimeType == "application/vnd.google-apps.folder") {
         try {
@@ -32,7 +32,7 @@ function transferFile(file, map) {
             properties.remaining.push(file.id);
 
             // map source to destination
-            map[file.id] = r.id;
+            // map[file.id] = r.id; // this has been deprecated
             
             return r;
         }

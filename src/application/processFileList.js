@@ -6,7 +6,7 @@
  * 
  * @param {Array} items the list of files over which to iterate
  */
-function processFileList(items, timeZone, userProperties, timers, map, ss) {
+function processFileList(items, timeZone, userProperties, timers, ss) {
     var item
        ,newfile;
     
@@ -22,7 +22,7 @@ function processFileList(items, timeZone, userProperties, timers, map, ss) {
         /*****************************
          * Transfer each (files and folders are both represented the same in Google Drive)
          */
-        newfile = transferFile(item, map);
+        newfile = transferFile(item);
 
 
 

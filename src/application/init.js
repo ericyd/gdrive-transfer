@@ -56,8 +56,6 @@ function initialize(selectedFolder) {
     // selectedFolder.destId = destFolder.id;
     selectedFolder.spreadsheetId = spreadsheet.id;
     selectedFolder.propertiesDocId = propertiesDocId;
-
-    // initialize map with top level source and destination folder
     selectedFolder.leftovers = {}; // {Object} FileList object (returned from Files.list) for items not processed in prior execution (filled in saveState)
     selectedFolder.remaining = [selectedFolder.srcId];
 
