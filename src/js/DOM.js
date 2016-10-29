@@ -43,7 +43,7 @@ module.exports = {
         
         $("#transferFolderButton").button('loading');
         $("#resumeFolderSubmit").button('loading');
-        $("#newFolder").prop('disabled', true);
+        $("#folder").prop('disabled', true);
         
         $("#status").show("blind");
     },

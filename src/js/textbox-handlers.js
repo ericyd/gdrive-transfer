@@ -54,7 +54,7 @@ module.exports = {
                         "srcId": metadata.id,
                         "srcParentId": metadata.parents[0].id,
                         "srcName": metadata.title,
-                        // "newOwner": metadata.newOwner // this won't be included in the metadata 
+                        // newOwner is set when the form is submitted 
                     });
 
                 })

@@ -28,10 +28,6 @@ function doGet(e) {
  */
 function initialize(selectedFolder) {
 
-    // TODO: refactor this entire function - there is no "destination folder" in this function at all
-    // TODO: change all instances of destName to newOwner
-    // TODO: change all references from #newFolder to #newOwner
-
     /*****************************
      * Declare variables used in project initialization 
      */
