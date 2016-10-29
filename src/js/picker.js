@@ -122,7 +122,7 @@ function setSelectedFolder(properties) {
     selectedFolder.srcId = properties.srcId;
     selectedFolder.srcParentId = properties.srcParentId;
     selectedFolder.srcName = properties.srcName;
-    
+    // newOwner is not saved here, but added to selectedFolder when the form is submitted
     DOM.folderIsSelected(selectedFolder);
     
 }
