@@ -37,38 +37,7 @@
             <span class="textfield__label">New owner email</span>
         </label>
 
-        <!--Pop up the modal.
-            The href of this link must point to the ID of the modal-->
-        <a class="btn" id="trigger-modal" href="#modal-wrapper">Transfer ownership</a>
-
-
-        <div id="modal-wrapper" class="overlay">
-            <div class="modal">
-                <h2>Confirm transfer of ownership</h2>
-                <a class="close" href="#">&times;</a>
-                <div class="content">
-                    <p>
-                        You are about to transfer the folder 
-                        "<b><span class="folderName"></span></b>" 
-                        to the user 
-                        "<b><span id="newOwnerEmail"></span></b>". 
-                        Are you sure you would like to proceed?
-                    </p>
-                    <p>
-                        <b>NOTE: This cannot be undone!</b>
-                    </p>
-                    <p>
-                        Please be aware that this will send <b>one email per file and folder to the new owner</b>.  Depending on folder size, this can result in a huge number of emails sent. There is no way to disable this behavior.
-                    </p>
-                    <!--Submit-->
-                    <button type="submit" id="transferFolderButton" data-loading-text="Transferring..." class="btn">Transfer folder ownership</button>
-                    <a class="btn btn--small" href="#">Cancel</a> 
-                </div>
-            </div>
-        </div>
-
-
-
+        <button type="submit" id="transferFolderButton" data-loading-text="Transferring..." class="btn">Transfer ownership</button>
     </form>
 
 </div>   

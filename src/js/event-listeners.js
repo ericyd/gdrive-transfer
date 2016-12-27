@@ -138,11 +138,6 @@ module.exports = {
         folderTextbox.addEventListener('keyup', textboxHandlers.getFileData, false);
         module.exports.addSelectButtonListeners();
 
-        $("#trigger-modal").click(function() {
-            $("#newOwnerEmail").text($("#newOwner").val());
-        });
-
-
         /**
          * Execute when beginning new folder transfer
          *
@@ -155,10 +150,6 @@ module.exports = {
          * @param {Object} event 
          */
         $("#folderForm").submit(function( event ) { 
-            // clear the modal
-            window.location.hash = '#'; 
-
-            $("#trigger-modal").hide(); 
 
             var errormsg; 
             
@@ -180,9 +171,13 @@ module.exports = {
 
                 // count number of triggers
                 google.script.run
-                    .withSuccessHandler(function(number) {
+                    .withSuccessHandler(function(results) {
+                        if (!results.isShared) {
+                            $("#errors").append('You must share the folder with the new owner before you can transfer ownership.' + 
+                                '<br>Please share the folder with the new owner and begin again.');
+                        }
                         // prompt user to wait or delete existing triggers
-                        if (number > 9) {
+                        else if (results.number > 9) {
                             $("#too-many-triggers").show('blind');
                             $("#status").hide("blind");
                         } else {
@@ -197,7 +192,7 @@ module.exports = {
                     .withFailureHandler(function(err) {
                         $("#errors").append(err);
                     })
-                    .getTriggersQuantity();
+                    .validateForm(picker.folder);
             }
             event.preventDefault();
             
