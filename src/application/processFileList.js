@@ -24,8 +24,11 @@ function processFileList(items, newOwner, timeZone, userProperties, timers, ss) 
          */
         newPermissions = transferFile(item, newOwner);
 
+        if (item.mimeType == "application/vnd.google-apps.folder") {
+            properties.remaining.push(item.id);
+        }
 
-
+        cleanUpParents(item);
 
         /*****************************
          * Log result
@@ -45,5 +48,29 @@ function processFileList(items, newOwner, timeZone, userProperties, timers, ss) 
          * Update current runtime and user stop flag
          */
         timers.update(userProperties);
+    }
+}
+
+/**
+ * There is an issue in Google Drive where it will create references in My Drive
+ * to every file that has been transferred to you
+ * https://productforums.google.com/forum/#!topic/drive/ohL9YQarCec
+ * 
+ * This function removes parents if they are the root drive.
+ * Since this doesn't get called for the top-level folder (which is transferred in initialize()),
+ * this will only happen for child folders and files
+ */
+
+function cleanUpParents(file) {
+    var numParents = file.parents.length;
+    var indexOfRoot;
+
+    if (numParents > 1) {
+        for (i = 0; i < numParents; i++) {
+            if (file.parents[i].isRoot) {
+                indexOfRoot = i;
+            }
+        }
+        file.parents.splice(index, 1);
     }
 }
