@@ -3,10 +3,6 @@
  * showing/hiding of DOM elements.
  */
 
-var templates = require('./templates.js');
-var icons = require('./icons');
-var eventListeners = require('./event-listeners');
-
 module.exports = {
     /**
     * Updates "Select Folder" fields with selected folder info
@@ -56,12 +52,25 @@ module.exports = {
     
     
     /**
-    * Resets form to default state
+    * Clears selected folder
     */
-    resetForm: function () {
+    clearSelected: function () {
         $(".folderSelect").show();
         $(".selectedFolderInfo").hide();
         $(".getFolderErrors").hide();
     }
+    //,
+
+    // 
+    //  Resets form to default state
+    // 
+    // resetForm: function () {
+    //     var templates = require('./templates.js');
+    //     var icons = require('./icons');
+    //     var eventListeners = require('./event-listeners');
+
+    //     $("#put-forms-here").html(templates['start-step1'].render({}, icons));
+    //     eventListeners.addStartStep1Listeners();
+    // }
 };
 

@@ -177,6 +177,7 @@ module.exports = {
                             errormsg = "<div class='alert alert-danger' role='alert'>You must share the folder with the new owner before you can transfer ownership." +
                                  "<br>Please share the folder with the new owner and begin again.</div>";
                             $("#errors").html(errormsg);
+                            $("#status").hide("blind");
                         }
                         // prompt user to wait or delete existing triggers
                         else if (results.number > 9) {
