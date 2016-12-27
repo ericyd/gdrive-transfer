@@ -3,6 +3,10 @@
  * showing/hiding of DOM elements.
  */
 
+var templates = require('./templates.js');
+var icons = require('./icons');
+var eventListeners = require('./event-listeners');
+
 module.exports = {
     /**
     * Updates "Select Folder" fields with selected folder info
