@@ -1,0 +1,42 @@
+<!--Form-->
+<div id="formDiv" class="form-div">
+    <form id="folderForm" name="folderForm">
+
+        <!--Select Folder-->
+        Folder to transfer
+        <!--Elements to select folder-->
+        <div class="folderSelect">
+            <button type="button" id="selectFolderButton" class="btn btn--small selectFolderButton">Select Folder</button>
+            or
+            <label for="folder" class="textfield">
+                <input type="text" id="folderTextbox" name="folder">
+                <span class="textfield__label">Paste folder URL (Ctrl-V)</span>
+            </label>
+        </div>
+
+        <div class="getFolderErrors"></div>
+        
+        
+        <div class="folderLookup">
+            Finding folder...<span class="rotate-contents"><i class="spinner"></i></span>
+        </div>
+
+
+        <!--Display when folder is selected-->
+        <div class="selectedFolderInfo">
+            <span class="folderName"></span> &nbsp;&nbsp;
+            <button type="reset" class="btn  btn--small selectOtherFolder">Select other folder</button>
+        </div>
+        
+        <br />
+
+
+        <!--New folder name-->
+        <label class="textfield" for="newOwner">
+            <input type="text" id="newOwner" name="newOwner" />
+            <span class="textfield__label">New owner email</span>
+        </label>
+
+        <button type="submit" id="transferFolderButton" data-loading-text="Transferring..." class="btn">Transfer ownership</button>
+    </form>
+</div>

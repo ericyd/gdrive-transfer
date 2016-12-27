@@ -1,30 +1,25 @@
-/*
-  This contains all the initialization code and event bindings
-*/
-
-var $ = jQuery = require('jquery');
-require('../../node_modules/bootstrap-sass/assets/javascripts/bootstrap/button.js');
-require('../../node_modules/jquery-ui/effect-blind.js');
-var getValues = require('./getValues');
+// Requires
 var picker = require('./picker');
+var templates = require('./templates.js');
+var icons = require('./icons');
+var eventListeners = require('./event-listeners');
 
+// event bindings
 $(function() {
-  $("#status").hide();
-  $("#troubleshooting").hide();
-  $("#complete").hide();
-  $("#please-review").hide();
-  $("#newOwner").prop('disabled', false);
-});
 
-$("#thisForm").submit(function( event ) {
-  getValues.get();
-  event.preventDefault();
-});
+    eventListeners.addNavListeners();
+    eventListeners.addDeleteTriggerButtonListeners();
 
-$("#selectFolderButton").click(function() {
-  picker.showPicker();
-});
+    $("#put-forms-here").html(templates['start-step1'].render({}, icons));
+    eventListeners.addStartStep1Listeners();
 
-$("#confirm-button").click(function() {
-  getValues.confirm();
+    google.script.run
+        .withSuccessHandler(function(email) {
+            $(".userEmail").html(email);
+        })
+        .withFailureHandler(function(err) {
+            console.log("couldn't get email");
+        })
+        .getUserEmail();
+    
 });

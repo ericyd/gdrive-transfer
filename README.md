@@ -33,6 +33,6 @@ If you attempt to transfer a folder and it (or any of its children files or fold
 
 This app does not change sharing permissions on any files or folders, nor does provide visibility of any files or folders to anyone except the owner and the new owner.  The transfer is done entirely through Google Drive and will not change the privacy of your files in any way, except for transferring ownership to the specified new owner.
 
-## Bugs? Comments? Questions?
+## Bugs? Questions?
 
-Contact the author at eric@ericyd.com
+Please [open an issue](http://github.com/ericyd/gdrive-transfer/issues)

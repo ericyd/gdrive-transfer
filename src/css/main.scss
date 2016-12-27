@@ -1,62 +1,9 @@
-
-@import "custom-variables";
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap";
-
-/* 
-Sticky footer
-https://css-tricks.com/snippets/css/sticky-footer/
-*/
-html, body {
-    height: 100%;
-}
-
-.container {
-    width: 70%;
-    min-height: 100%;
-    /* equal to footer height */
-    margin-bottom: -$footer-height; 
-    @media only screen and (max-width:768px) {
-        margin-bottom: -$footer-height-sm;
-    }
-}
-
-.container:after {
-    content: "";
-    display: block;
-}
-
-.footer, .container:after {
-    height: $footer-height;
-    @media only screen and (max-width:768px) {
-        height: $footer-height-sm;
-    } 
-}
-
-.footer {
-  width: 100%;
-  padding: 1em 0 1em 0;
-  background:$footer-color;
-  
-  .col-sm-2 {
-    font-size: 0.8em;
-    
-    @media only screen and (max-width:768px) {
-        padding-top: 1em;
-    } 
-  }
-}
-
-.footer > .container-fluid > .row > div {
-    border-right: 1px solid darken($footer-color, 20%); 
-  
-}
-
-.description {
-    font-family:'Lato', sans-serif;
-    font-size: 1.5em;
-    padding: 1em 0 2em 0;
-}
-
-.folderName {
-    font-weight: bold;
-}
+@import "_layout";
+@import "_footer";
+@import "_header";
+@import "_toggle-explanation";
+@import "_alerts";
+@import "_animation";
+@import "_buttons";  
+@import "_icons";
+@import "_modal";
