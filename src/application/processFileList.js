@@ -40,7 +40,7 @@ function processFileList(items, newOwner, timeZone, userProperties, timers, ss) 
                     Utilities.formatDate(new Date(), timeZone, "MM-dd-yy hh:mm:ss aaa")
                 ]);
 
-                cleanUpParents(item);
+                // cleanUpParents(item);
 
         // skip all steps if it isn't a 'native' google file; log that the file was skipped
         } else {
