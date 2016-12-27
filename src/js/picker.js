@@ -3,7 +3,7 @@ Many, many thanks to [Jean-Pierre Verhulst](https://plus.google.com/+JeanPierreV
 for providing the working backbone of this script
 */
 
-var DOM = require('./DOM');
+var dom = require('./DOM');
 
 // vanillaJS implementation of $.getScript(), thanks to http://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
 function getScript(source, callback) {
@@ -123,7 +123,7 @@ function setSelectedFolder(properties) {
     selectedFolder.srcParentId = properties.srcParentId;
     selectedFolder.srcName = properties.srcName;
     // newOwner is not saved here, but added to selectedFolder when the form is submitted
-    DOM.folderIsSelected(selectedFolder);
+    dom.folderIsSelected(selectedFolder);
     
 }
 

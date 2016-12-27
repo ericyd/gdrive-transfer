@@ -6,7 +6,7 @@
  * their usage.
  */
 
-var DOM = require('./DOM');
+var dom = require('./DOM');
 var picker = require('./picker');
 var templates = require('./templates.js');
 var icons = require('./icons');
@@ -60,7 +60,7 @@ module.exports = {
      */
     'addSelectButtonListeners': function() {
         $(".selectOtherFolder").click(function() {
-            DOM.resetForm();
+            dom.clearSelected();
         });
 
         // Show Google Picker when select Folder buttons are selected
@@ -98,7 +98,7 @@ module.exports = {
 
             } else {
                 // Valid!
-                DOM.onValid();
+                dom.onValid();
 
                 picker.folder.resuming = true;
 
@@ -151,6 +151,7 @@ module.exports = {
          */
         $("#folderForm").submit(function( event ) { 
 
+            event.preventDefault();
             var errormsg; 
             
             // validate
@@ -164,7 +165,7 @@ module.exports = {
                 
             } else {
                 // Valid!
-                DOM.onValid();
+                dom.onValid();
                 
                 // Get values from form and selected folder to initialize transfer        
                 picker.folder.newOwner = $("#newOwner").val();
@@ -173,8 +174,9 @@ module.exports = {
                 google.script.run
                     .withSuccessHandler(function(results) {
                         if (!results.isShared) {
-                            $("#errors").append('You must share the folder with the new owner before you can transfer ownership.' + 
-                                '<br>Please share the folder with the new owner and begin again.');
+                            errormsg = "<div class='alert alert-danger' role='alert'>You must share the folder with the new owner before you can transfer ownership." +
+                                 "<br>Please share the folder with the new owner and begin again.</div>";
+                            $("#errors").html(errormsg);
                         }
                         // prompt user to wait or delete existing triggers
                         else if (results.number > 9) {
@@ -194,7 +196,6 @@ module.exports = {
                     })
                     .validateForm(picker.folder);
             }
-            event.preventDefault();
             
         });
     },
@@ -248,7 +249,7 @@ module.exports = {
             $("#put-forms-here").html(templates['start-step2'].render({}, icons));
             module.exports.addStartStep2Listeners();
         });
-    }
+    },
 
     'addStartStep2Listeners': function() {
         // disable button by default
@@ -266,7 +267,7 @@ module.exports = {
             $("#put-forms-here").html(templates['start-step3'].render({}, icons));
             module.exports.addStartStep3Listeners();
         });
-    }
+    },
 
     'addStartStep3Listeners': function() {
         // disable button by default

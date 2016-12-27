@@ -10,6 +10,8 @@
 
 function transferFile(file, newOwner) {
     // TODO: get the active user and pass it to this function so I don't need to call this for every file
+    Logger.log(DriveApp.getFileById(file.id).getOwner());
+    Logger.log(Session.getActiveUser());
     if (DriveApp.getFileById(file.id).getOwner() === Session.getActiveUser()) {
 
         try {
@@ -28,5 +30,5 @@ function transferFile(file, newOwner) {
             return err;
         }
     }
-    return {message: "you aren't the owner of this file/folder"}
+    return {message: "you aren't the owner of this file/folder"};
 }

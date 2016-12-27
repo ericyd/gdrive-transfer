@@ -8,7 +8,7 @@
 
 // Requires
 var picker = require('./picker');
-var DOM = require('./DOM');
+var dom = require('./DOM');
 var parseId = require('./parseId');
 
 // interval is the handle for the interval set in handleMouse and cleared in getFileData 
@@ -42,7 +42,7 @@ module.exports = {
     'getFileData': function(e) {
         
         if (e.target.value !== "") {
-            DOM.onFolderLookup();
+            dom.onFolderLookup();
             clearInterval(interval);
             
             var id = parseId( e.target.value );

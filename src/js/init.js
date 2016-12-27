@@ -10,8 +10,8 @@ $(function() {
     eventListeners.addNavListeners();
     eventListeners.addDeleteTriggerButtonListeners();
 
-    $("#put-forms-here").html(templates.start.render({}, icons));
-    eventListeners.addStartFormListeners();
+    $("#put-forms-here").html(templates['start-step1'].render({}, icons));
+    eventListeners.addStartStep1Listeners();
 
     google.script.run
         .withSuccessHandler(function(email) {
