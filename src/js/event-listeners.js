@@ -28,10 +28,10 @@ module.exports = {
         }); 
 
         $('#start-button').click(function(e) {
-            $("#put-forms-here").html(templates.start.render({}, icons));
+            $("#put-forms-here").html(templates['start-step1'].render({}, icons));
             $(".btn--nav").removeClass("active");
             $(this).addClass("active");
-            module.exports.addStartFormListeners();
+            module.exports.addStartStep1Listeners();
         });
 
         $('#stop-button').click(function(e) {
@@ -234,6 +234,60 @@ module.exports = {
                     $("#errors").append(err);
                 })
                 .deleteAllTriggers();
+        });
+    },
+
+    'addStartStep1Listeners': function() {
+        // disable button by default
+        $('#step1Button').prop("disabled",true);
+
+        // when checkbox is checked, enable the continue button
+        $("#confirm-many-emails").change( function(){
+            if( $(this).is(':checked') ) {
+                $('#step1Button').prop("disabled",false);
+            }
+        });
+
+        // when continue button is clicked, load next step and add event listeners
+        $('#step1Button').click(function(e) {
+            $("#put-forms-here").html(templates['start-step2'].render({}, icons));
+            module.exports.addStartStep2Listeners();
+        });
+    }
+
+    'addStartStep2Listeners': function() {
+        // disable button by default
+        $('#step2Button').prop("disabled",true);
+
+        // when checkbox is checked, enable the continue button
+        $("#confirm-folder-shared").change( function(){
+            if( $(this).is(':checked') ) {
+                $('#step2Button').prop("disabled",false);
+            }
+        });
+
+        // when continue button is clicked, load next step and add event listeners
+        $('#step2Button').click(function(e) {
+            $("#put-forms-here").html(templates['start-step3'].render({}, icons));
+            module.exports.addStartStep3Listeners();
+        });
+    }
+
+    'addStartStep3Listeners': function() {
+        // disable button by default
+        $('#step3Button').prop("disabled",true);
+
+        // when checkbox is checked, enable the continue button
+        $("#confirm-no-undo").change( function(){
+            if( $(this).is(':checked') ) {
+                $('#step3Button').prop("disabled",false);
+            }
+        });
+
+        // when continue button is clicked, load next step and add event listeners
+        $('#step3Button').click(function(e) {
+            $("#put-forms-here").html(templates['start-form'].render({}, icons));
+            module.exports.addStartFormListeners();
         });
     }
 
