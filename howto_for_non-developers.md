@@ -5,6 +5,8 @@ I wanted to create a guide that non-developers could use to deploy this code in 
 
 The intended audience for this document are those people who have familiarity with Google Drive and a moderate fluency with we browsers.  No modification of code is required to launch a web app using the code in this repository.
 
+The code snippets (`the parts that look like this`) are intended to be run in the Terminal on Mac or Linux or Command Prompt on Windows.
+
 ## Requirements
 
 * Git
@@ -40,11 +42,11 @@ or you can leave it `false` and things will not be compressed.
 
 Simply run
 ```
-gulp build
+npm run build
 ```
 and the files will be compiled into the `dist` directory.  Alternately, you can run 
 ```
-gulp watch
+npm run watch
 ```
 before editing files, and the files will be compiled in realtime whenever changes are made.
 
