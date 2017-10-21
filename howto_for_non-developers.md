@@ -14,7 +14,7 @@ The intended audience for this document are those people who have familiarity wi
 ## Step 1: Download code
 
 ```
-git clone https://github.com/ericyd/gdrive-copy.git
+git clone https://github.com/ericyd/gdrive-transfer.git
 ```
 
 ## Step 2: Install the latest version of npm
