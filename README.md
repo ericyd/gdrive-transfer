@@ -1,6 +1,11 @@
-Google Drive Transfer Ownership
+🚨 DEPRECATED 🚨
 ==================
 
+This project always kinda sucked and now I officially killed it. Leaving code here in case people are curious but I deleted all the project references from Google and it should be fully removed within 30 days.
+
+---
+
+## Google Drive Transfer Ownership
 
 This is a Google Drive Web app hosted at the [Chrome Web Store](https://chrome.google.com/webstore/detail/transfer-ownership/ndbdlpeegehlbhgnpifancfbnnehoofa). 
 This app will transfer ownership of a Google Drive folder, including ownership of all sub-folders and files.  This extends the normal Google Drive functionality because Google Drive only allows you to transfer folders or files one at a time.  Transferring ownership of a parent folder, for example, does not transfer ownership of the children files and folders.  This app fills that gap by recursively transferring ownership of all files and folders within a single parent folder.
